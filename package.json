@@ -1,0 +1,19 @@
+{
+  "name": "terrier",
+  "version": "0.0.1",
+  "description": "Next level template engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "npx tsc && node ./src/index.js"
+  },
+  "author": "Philip Flyvholm",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "^18.7.17",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "gelex": "^0.0.7"
+  }
+}
