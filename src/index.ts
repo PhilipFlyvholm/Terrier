@@ -1,29 +1,6 @@
-const fs = require('fs');
-const gelex = require('gelex');
-const def = gelex.definition();
-const isEmptyTag = require('./utils/emptyTags').isEmptyTag;
-//KNOWN ISSUE: can't pass data-[bla] attributes
-def.define("attribute", "[a-zA-Z\-]*=", function (value: string) {
-  return value.substring(0, value.length - 1);
-});
-def.define("keyword", "[a-zA-Z][a-zA-Z0-9]*");
-def.defineText("string", '"', '"');
-def.defineText("string", "'", "'");
-def.define("newline", "\n");
-
-interface Token {
-  type: string,
-  value: string,
-  begin: number,
-  end: number
-}
-
-interface Lexer {
-  position: () => number,
-  next: () => Token,
-  seek: (newposition: number) => void
-}
-
+import fs from 'fs';
+import isEmptyTag from './utils/emptyTags.js';
+import getLexer from './parser/Lexer.js';
 interface ParseData {
   lexer: Lexer,
   line: number,
@@ -135,7 +112,7 @@ const parseAttributes = (parseData: ParseData, tag: Tag): [ParseData, Tag] => {
   }
 }
 
-const parseChildren = (parseData:ParseData, tag:Tag): [ParseData, Tag] => {
+const parseChildren = (parseData: ParseData, tag: Tag): [ParseData, Tag] => {
   let currentPos = parseData.lexer.position();
   let token = parseData.lexer.next();
   if (token == null) {
@@ -184,7 +161,7 @@ const parseChildren = (parseData:ParseData, tag:Tag): [ParseData, Tag] => {
   }
 }
 
-const parseTag = (parseData:ParseData, tag:Tag):[ParseData, Tag] => {
+const parseTag = (parseData: ParseData, tag: Tag): [ParseData, Tag] => {
   let attributeParse = parseAttributes(parseData, tag);
   parseData = attributeParse[0];
   tag = attributeParse[1];
@@ -205,7 +182,7 @@ const parseTag = (parseData:ParseData, tag:Tag):[ParseData, Tag] => {
   return [parseData, tag];
 }
 
-const parse = (parseData:ParseData):ParseData => {
+const parse = (parseData: ParseData): ParseData => {
   if (!parseData || !parseData.success) {
     console.log("Parse error");
     return parseData;
@@ -244,7 +221,7 @@ const parse = (parseData:ParseData):ParseData => {
 
 }
 
-const convertToHTML = (tags:Tag[]) => {
+const convertToHTML = (tags: Tag[]) => {
   let html = "";
   if (!tags) return html;
   tags.forEach(tag => {
@@ -255,7 +232,7 @@ const convertToHTML = (tags:Tag[]) => {
     if (children && children.length) {
       let childrenHTML = convertToHTML(children);
       html += `<${tag.tag}${attributes}>${childrenHTML}</${tag.tag}>`;
-    } 
+    }
     else if (isEmptyTag(tag.tag)) html += `<${tag.tag}${attributes}/>`;
     else html += `<${tag.tag}${attributes}></${tag.tag}>`;
   });
@@ -263,12 +240,13 @@ const convertToHTML = (tags:Tag[]) => {
 }
 
 const main = async () => {
-  await fs.readFile('./examples/index.ter', 'Utf8', (err: any, data: any) => {
+  await fs.readFile('./examples/index.ter', (err: any, data: any) => {
     if (err) {
       console.error(err);
       return;
     }
-    const lexer = def.lexer(data);
+
+    const lexer = getLexer(data.toString());
     const parseData: ParseData = {
       lexer: lexer,
       line: 1,

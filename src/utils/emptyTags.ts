@@ -16,6 +16,6 @@ const emptyTags = [
     "wbr",
 ];
 
-exports.isEmptyTag = (tag:string):boolean => {
+export default function isEmptyTag (tag:string) {
     return emptyTags.includes(tag);
 }

@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "example": "npx tsc && node ./src/index.js"
   },
+  "type": "module",
   "author": "Philip Flyvholm",
   "license": "GPL-3.0-or-later",
   "devDependencies": {

@@ -1,4 +1,3 @@
-"use strict";
 const emptyTags = [
     "area",
     "base",
@@ -16,6 +15,6 @@ const emptyTags = [
     "track",
     "wbr",
 ];
-exports.isEmptyTag = (tag) => {
+export default function isEmptyTag(tag) {
     return emptyTags.includes(tag);
-};
+}

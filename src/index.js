@@ -1,25 +1,6 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-const fs = require('fs');
-const gelex = require('gelex');
-const def = gelex.definition();
-const isEmptyTag = require('./utils/emptyTags').isEmptyTag;
-//KNOWN ISSUE: can't pass data-[bla] attributes
-def.define("attribute", "[a-zA-Z\-]*=", function (value) {
-    return value.substring(0, value.length - 1);
-});
-def.define("keyword", "[a-zA-Z][a-zA-Z0-9]*");
-def.defineText("string", '"', '"');
-def.defineText("string", "'", "'");
-def.define("newline", "\n");
+import fs from 'fs';
+import isEmptyTag from './utils/emptyTags.js';
+import getLexer from './parser/Lexer.js';
 const printParseData = (parseData) => {
     console.log("Success:", parseData.success);
     console.log("Lines:", parseData.line);
@@ -238,13 +219,13 @@ const convertToHTML = (tags) => {
     });
     return html;
 };
-const main = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield fs.readFile('./examples/index.ter', 'Utf8', (err, data) => {
+const main = async () => {
+    await fs.readFile('./examples/index.ter', (err, data) => {
         if (err) {
             console.error(err);
             return;
         }
-        const lexer = def.lexer(data);
+        const lexer = getLexer(data.toString());
         const parseData = {
             lexer: lexer,
             line: 1,
@@ -257,5 +238,5 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log("Result:", r);
         console.log(convertToHTML(r.tags));
     });
-});
+};
 main();
