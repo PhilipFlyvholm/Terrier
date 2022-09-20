@@ -44,5 +44,5 @@ html
             br
             p class="bold italic"
                 "This webpage is created using json and is converted into HTML"
-            p
+            p:
                 "For more infomation"

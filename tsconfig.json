@@ -7,6 +7,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "rootDir": "src",
+    "outDir": "build",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

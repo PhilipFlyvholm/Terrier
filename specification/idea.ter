@@ -46,7 +46,9 @@ html
             else
                 p: "x is not five, but {x}"
             foreach {["bing", "bong"]} as item
-                p 
+                center
+                    text
+
 
 @js {
     const hello = "world";
