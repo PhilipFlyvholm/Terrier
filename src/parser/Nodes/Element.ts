@@ -1,9 +1,10 @@
 import Node from './Node';
 import isEmptyTag from '../../utils/emptyTags.js';
+import Attribute from './Attribute';
 
 export default class Element extends Node {
     public tag: string;
-    public attributes = new Map<string, string>();
+    public attributes: Attribute[] = [];
     public is_self_closing = false;
 
     constructor(begin: number, end: number, tag: string) {

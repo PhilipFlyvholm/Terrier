@@ -1,6 +1,6 @@
 import Node from './Node';
 
-export default class Element extends Node {
+export default class Text extends Node {
     public text: string;
     public isEscaped: boolean;
 
