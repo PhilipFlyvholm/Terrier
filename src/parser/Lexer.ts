@@ -8,6 +8,13 @@ def.defineText("string", '"', '"');
 def.defineText("string", "'", "'");
 def.define("newline", "\n");
 
-export default function getLexer(data: any) {
+export enum LexTypes{
+    Attribute = "attribute",
+    Keyword = "keyword",
+    String = "string",
+    Newline = "newline"
+}
+
+export function getLexer(data: any) {
     return def.lexer(data);
 };

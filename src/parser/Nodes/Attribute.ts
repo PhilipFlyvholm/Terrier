@@ -1,12 +1,17 @@
 import Node from "./Node";
 import Text from "./Text";
 
-export default class Attribute extends Node {
+export default class Attribute implements Node {
+    public type: string;
+    public begin: number;
+    public children: Node[];
     public name: string;
     public value: Text;
 
-    constructor(begin: number, end: number, name: string, value: Text) {
-        super('attribute', begin, end);
+    constructor(begin: number, name: string, value: Text) {
+        this.type = "attribute";
+        this.begin = begin;
+        this.children = [];
         this.name = name;
         this.value = value;
     }

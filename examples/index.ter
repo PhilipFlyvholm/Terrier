@@ -1,6 +1,7 @@
-import text from "components/text.json"
-import center from "components/center.json"
-
+@js {
+    import text from "components/text.json"
+    import center from "components/center.json"
+}
 html
     head
         meta charset="utf-8"

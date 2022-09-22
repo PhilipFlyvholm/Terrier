@@ -1,6 +1,6 @@
 import fs from 'fs';
 import isEmptyTag from './utils/emptyTags.js';
-import getLexer from './parser/Lexer.js';
+import {getLexer} from './parser/Lexer.js';
 interface ParseData {
   lexer: Lexer,
   line: number,
@@ -16,7 +16,18 @@ interface Tag {
   index: number,
   raw: string
 }
+interface Token {
+  type: string,
+  value: string,
+  begin: number,
+  end: number
+}
 
+interface Lexer {
+  position: () => number,
+  next: () => Token,
+  seek: (newposition: number) => void
+}
 
 const printParseData = (parseData: ParseData) => {
   console.log("Success:", parseData.success);
