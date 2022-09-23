@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "rootDir": "src",
     "outDir": "build",
+    "sourceMap": true,
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

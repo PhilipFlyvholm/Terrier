@@ -1,6 +1,8 @@
 import fs from 'fs';
 import isEmptyTag from './utils/emptyTags.js';
 import {getLexer} from './parser/Lexer.js';
+import Parser from './parser/Parser.js';
+
 interface ParseData {
   lexer: Lexer,
   line: number,
@@ -29,7 +31,7 @@ interface Lexer {
   seek: (newposition: number) => void
 }
 
-const printParseData = (parseData: ParseData) => {
+/*const printParseData = (parseData: ParseData) => {
   console.log("Success:", parseData.success);
   console.log("Lines:", parseData.line);
   console.log("Tags:");
@@ -40,7 +42,7 @@ const printParseData = (parseData: ParseData) => {
       console.log(element);
     });
   }
-}
+}*/
 
 const createTag = (tag: string, index: number): Tag => {
   return {
@@ -250,7 +252,7 @@ const convertToHTML = (tags: Tag[]) => {
   return html;
 }
 
-const main = async () => {
+/*const main = async () => {
   await fs.readFile('./examples/index.ter', (err: any, data: any) => {
     if (err) {
       console.error(err);
@@ -270,5 +272,17 @@ const main = async () => {
     console.log("Result:", r);
     console.log(convertToHTML(r.tags));
   });
+}*/
+
+const parserTest = async () => {
+  await fs.readFile('./examples/short.ter', (err: any, data: any) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    const lexer = getLexer(data.toString());
+    const parser = new Parser(lexer);
+    parser.printStack();
+  });
 }
-main();
+parserTest();

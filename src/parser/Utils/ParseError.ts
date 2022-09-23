@@ -11,7 +11,7 @@ export function error(error:IError, line: number){
 export const ParseError = {
     unknown_type: (type:string) => ({
         refCode: "unknown_type",
-        message: `The type ${type} is unkown`
+        message: `The type "${type}" is unknown`
     }),
     arg_missing_value: {
         refCode: "missing_value",
