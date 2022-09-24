@@ -7,8 +7,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-
-// 👇️ "/home/john/Desktop/javascript"
 const __dirname = path.dirname(__filename);
 
 describe('Parser', function () {
@@ -28,10 +26,5 @@ describe('Parser', function () {
                 assert.deepEqual(parser.stack, JSON.parse(output));
             });
         });
-        /*it('should pass simply html tag', function () {
-            const lexer = getLexer("html");
-            const parser = new Parser(lexer);
-            assert.equal(JSON.stringify(parser.stack), JSON.stringify([new Element(0, "html", 0)]));
-        });*/
     });
 });

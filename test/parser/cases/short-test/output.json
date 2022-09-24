@@ -16,12 +16,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 27,
-                                "children": [],
                                 "name": "charset",
                                 "value": {
                                     "type": "text",
                                     "begin": 35,
-                                    "children": [],
                                     "text": "utf-8",
                                     "isEscaped": true
                                 }
@@ -43,7 +41,6 @@
                             {
                                 "type": "text",
                                 "begin": 69,
-                                "children": [],
                                 "text": "Hello mate",
                                 "isEscaped": true
                             }
@@ -56,12 +53,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 95,
-                                "children": [],
                                 "name": "content",
                                 "value": {
                                     "type": "text",
                                     "begin": 103,
-                                    "children": [],
                                     "text": "width=device-width, initial-scale=1",
                                     "isEscaped": true
                                 }
@@ -69,12 +64,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 141,
-                                "children": [],
                                 "name": "name",
                                 "value": {
                                     "type": "text",
                                     "begin": 146,
-                                    "children": [],
                                     "text": "viewport",
                                     "isEscaped": true
                                 }
@@ -92,12 +85,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 170,
-                                "children": [],
                                 "name": "http-equiv",
                                 "value": {
                                     "type": "text",
                                     "begin": 181,
-                                    "children": [],
                                     "text": "Content-type",
                                     "isEscaped": true
                                 }
@@ -105,12 +96,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 196,
-                                "children": [],
                                 "name": "content",
                                 "value": {
                                     "type": "text",
                                     "begin": 204,
-                                    "children": [],
                                     "text": "text/html; charset=utf-8",
                                     "isEscaped": true
                                 }
@@ -128,12 +117,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 244,
-                                "children": [],
                                 "name": "rel",
                                 "value": {
                                     "type": "text",
                                     "begin": 248,
-                                    "children": [],
                                     "text": "stylesheet",
                                     "isEscaped": true
                                 }
@@ -141,12 +128,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 261,
-                                "children": [],
                                 "name": "href",
                                 "value": {
                                     "type": "text",
                                     "begin": 266,
-                                    "children": [],
                                     "text": "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
                                     "isEscaped": true
                                 }
@@ -168,12 +153,10 @@
                     {
                         "type": "attribute",
                         "begin": 350,
-                        "children": [],
                         "name": "class",
                         "value": {
                             "type": "text",
                             "begin": 356,
-                            "children": [],
                             "text": "body",
                             "isEscaped": true
                         }
@@ -188,12 +171,10 @@
                             {
                                 "type": "attribute",
                                 "begin": 375,
-                                "children": [],
                                 "name": "class",
                                 "value": {
                                     "type": "text",
                                     "begin": 381,
-                                    "children": [],
                                     "text": "box",
                                     "isEscaped": true
                                 }
@@ -208,12 +189,10 @@
                                     {
                                         "type": "attribute",
                                         "begin": 402,
-                                        "children": [],
                                         "name": "class",
                                         "value": {
                                             "type": "text",
                                             "begin": 408,
-                                            "children": [],
                                             "text": "text-3xl bold",
                                             "isEscaped": true
                                         }
@@ -226,7 +205,6 @@
                                     {
                                         "type": "text",
                                         "begin": 424,
-                                        "children": [],
                                         "text": "jhtml",
                                         "isEscaped": true
                                     }
@@ -248,12 +226,10 @@
                                     {
                                         "type": "attribute",
                                         "begin": 461,
-                                        "children": [],
                                         "name": "class",
                                         "value": {
                                             "type": "text",
                                             "begin": 467,
-                                            "children": [],
                                             "text": "bold italic",
                                             "isEscaped": true
                                         }
@@ -266,7 +242,6 @@
                                     {
                                         "type": "text",
                                         "begin": 481,
-                                        "children": [],
                                         "text": "This webpage is created using json and is converted into HTML",
                                         "isEscaped": true
                                     }
@@ -279,12 +254,10 @@
                                     {
                                         "type": "attribute",
                                         "begin": 581,
-                                        "children": [],
                                         "name": "class",
                                         "value": {
                                             "type": "text",
                                             "begin": 587,
-                                            "children": [],
                                             "text": "bling",
                                             "isEscaped": true
                                         }
@@ -297,7 +270,6 @@
                                     {
                                         "type": "text",
                                         "begin": 559,
-                                        "children": [],
                                         "text": "For more infomation",
                                         "isEscaped": true
                                     }
