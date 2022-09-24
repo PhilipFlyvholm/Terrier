@@ -20,16 +20,16 @@ export default class Parser {
         let token: Token;
         while (token = lexer.next()) {
             let type = token.type;
-            let indent = this.calculateIndent(token);            
+            let indent = this.calculateIndent(token);
             switch (type) {
                 case LexTypes.Newline:
                     this.line = {
-                        number: this.line.number+1,
+                        number: this.line.number + 1,
                         startIndex: token.end
                     }
                     break;
                 case LexTypes.Keyword:
-                    if(!this.newChild(indent)) return;
+                    if (!this.newChild(indent)) return;
                     let element = new Element(token.begin, token.value, indent);
                     this.stack.push(element);
                     break;
@@ -46,7 +46,7 @@ export default class Parser {
                     this.getCurrent().attributes.push(attribute);
                     break;
                 case LexTypes.String:
-                    if(!this.newChild(indent)) return;
+                    if (!this.newChild(indent)) return;
                     let value = token.value;
                     let stringElement = new Text(token.begin, value, true);
                     this.getCurrent().children.push(stringElement);
@@ -57,8 +57,8 @@ export default class Parser {
             }
         }
         //Final stack clean up. 
-        while (typeof this.stack[this.stack.length-2] !== "undefined" &&
-                this.stack[this.stack.length-2].indent <= this.getCurrent().indent) {
+        while (typeof this.stack[this.stack.length - 2] !== "undefined" &&
+            this.stack[this.stack.length - 2].indent <= this.getCurrent().indent) {
             let current = this.stack.pop();
             this.getCurrent().children.push(current as Element); //Force element type
         }
@@ -66,9 +66,9 @@ export default class Parser {
 
     getCurrent = () => this.stack[this.stack.length - 1];
 
-    newChild = (indent: number):boolean => {
-        
-        if(typeof this.getCurrent() === "undefined") return true;
+    newChild = (indent: number): boolean => {
+
+        if (typeof this.getCurrent() === "undefined") return true;
         if (indent < this.getCurrent().indent) {
             //Grandparent or older scope
             //div
@@ -86,7 +86,7 @@ export default class Parser {
                 this.getCurrent().children.push(current as Element); //Force element type
             }
         } else if (indent === this.getCurrent().indent) {
-            
+
             //Parent scope
             //div
             //  h1
@@ -101,11 +101,11 @@ export default class Parser {
             this.getCurrent().children.push(current as Element); //Force element type
         }
         return true;
-    } 
+    }
 
-    calculateIndent = (token:Token):number => token.begin - this.line.startIndex
+    calculateIndent = (token: Token): number => token.begin - this.line.startIndex
 
-    
+
     printStack = () => {
         console.log(this.stack);
     }

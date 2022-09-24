@@ -1,0 +1,320 @@
+[
+    {
+        "attributes": [],
+        "is_self_closing": false,
+        "type": "element",
+        "begin": 0,
+        "children": [
+            {
+                "attributes": [],
+                "is_self_closing": false,
+                "type": "element",
+                "begin": 9,
+                "children": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 27,
+                                "children": [],
+                                "name": "charset",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 35,
+                                    "children": [],
+                                    "text": "utf-8",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 22,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [],
+                        "is_self_closing": false,
+                        "type": "element",
+                        "begin": 51,
+                        "children": [
+                            {
+                                "type": "text",
+                                "begin": 69,
+                                "children": [],
+                                "text": "Hello mate",
+                                "isEscaped": true
+                            }
+                        ],
+                        "tag": "title",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 95,
+                                "children": [],
+                                "name": "content",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 103,
+                                    "children": [],
+                                    "text": "width=device-width, initial-scale=1",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 141,
+                                "children": [],
+                                "name": "name",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 146,
+                                    "children": [],
+                                    "text": "viewport",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 90,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 170,
+                                "children": [],
+                                "name": "http-equiv",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 181,
+                                    "children": [],
+                                    "text": "Content-type",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 196,
+                                "children": [],
+                                "name": "content",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 204,
+                                    "children": [],
+                                    "text": "text/html; charset=utf-8",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 165,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 244,
+                                "children": [],
+                                "name": "rel",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 248,
+                                    "children": [],
+                                    "text": "stylesheet",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 261,
+                                "children": [],
+                                "name": "href",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 266,
+                                    "children": [],
+                                    "text": "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 239,
+                        "children": [],
+                        "tag": "link",
+                        "indent": 9
+                    }
+                ],
+                "tag": "head",
+                "indent": 5
+            },
+            {
+                "attributes": [
+                    {
+                        "type": "attribute",
+                        "begin": 350,
+                        "children": [],
+                        "name": "class",
+                        "value": {
+                            "type": "text",
+                            "begin": 356,
+                            "children": [],
+                            "text": "body",
+                            "isEscaped": true
+                        }
+                    }
+                ],
+                "is_self_closing": false,
+                "type": "element",
+                "begin": 345,
+                "children": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 375,
+                                "children": [],
+                                "name": "class",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 381,
+                                    "children": [],
+                                    "text": "box",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": false,
+                        "type": "element",
+                        "begin": 371,
+                        "children": [
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 402,
+                                        "children": [],
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 408,
+                                            "children": [],
+                                            "text": "text-3xl bold",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 399,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 424,
+                                        "children": [],
+                                        "text": "jhtml",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "h1",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [],
+                                "is_self_closing": true,
+                                "type": "element",
+                                "begin": 444,
+                                "children": [],
+                                "tag": "br",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 461,
+                                        "children": [],
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 467,
+                                            "children": [],
+                                            "text": "bold italic",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 459,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 481,
+                                        "children": [],
+                                        "text": "This webpage is created using json and is converted into HTML",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "p",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 581,
+                                        "children": [],
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 587,
+                                            "children": [],
+                                            "text": "bling",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 557,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 559,
+                                        "children": [],
+                                        "text": "For more infomation",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "p",
+                                "indent": 13
+                            }
+                        ],
+                        "tag": "div",
+                        "indent": 9
+                    }
+                ],
+                "tag": "body",
+                "indent": 5
+            }
+        ],
+        "tag": "html",
+        "indent": 0
+    }
+]

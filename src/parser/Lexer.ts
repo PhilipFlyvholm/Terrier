@@ -1,3 +1,4 @@
+import { Lexer } from './Interfaces';
 import gelex from "gelex";
 const def = gelex.definition();
 def.define("attribute", "[a-zA-Z\-]*=", function (value: string) {
@@ -8,13 +9,13 @@ def.defineText("string", '"', '"');
 def.defineText("string", "'", "'");
 def.define("newline", "\n");
 
-export enum LexTypes{
+export enum LexTypes {
     Attribute = "attribute",
     Keyword = "keyword",
     String = "string",
     Newline = "newline"
 }
 
-export function getLexer(data: any) {
+export function getLexer(data: any): Lexer {
     return def.lexer(data);
 };
