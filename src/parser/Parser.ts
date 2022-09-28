@@ -1,12 +1,14 @@
 import { Lexer, Token } from './Interfaces';
 //import Node from "./Nodes/Node";
-import { LexTypes } from './Lexer.js';
+import { LexTypes, getLexer } from './Lexer.js';
 import Element from './Nodes/Element.js';
 import Attribute from './Nodes/Attribute.js';
 import { error, ParseError } from './Utils/ParseError.js';
 import Text from './Nodes/Text.js';
+import { parse as acornParse } from 'acorn';
+
 export default class Parser {
-    //private lexer: Lexer;
+    private lexer: Lexer;
     private line = {
         number: 1,
         startIndex: 0
@@ -14,11 +16,11 @@ export default class Parser {
     public stack: Element[] = [];
     //private ast: Node | null;
 
-    constructor(lexer: Lexer) {
-        //this.lexer = lexer;
+    constructor(template: string) {
+        this.lexer = getLexer(template);
         //this.ast = null;
         let token: Token;
-        while (token = lexer.next()) {
+        while (token = this.lexer.next()) {
             let type = token.type;
             let indent = this.calculateIndent(token);
             switch (type) {
@@ -36,7 +38,7 @@ export default class Parser {
                 case LexTypes.Attribute:
                     let attributeName = token.value;
                     let attributeBegin = token.begin;
-                    token = lexer.next();
+                    token = this.lexer.next();
                     if (token.type !== LexTypes.String) {
                         error(ParseError.arg_missing_value, this.line.number);
                         break;
@@ -51,8 +53,40 @@ export default class Parser {
                     let stringElement = new Text(token.begin, value, true);
                     this.getCurrent().children.push(stringElement);
                     break;
+                case LexTypes.Special:
+                    if (token.value === "script") {
+                        token = this.lexer.next();
+                        if (token.type !== LexTypes.Delimiter && token.value !== "{") {
+                            error(ParseError.missing_start_delimiter("script"), this.line.number);
+                            break;
+                        }
+                        let depth = 1;
+                        let scriptBegin = token.begin;
+                        let scriptEnd = token.end;
+
+                        while (depth != 0) {
+                            let nextDelimiter = this.nextUntil("delimiter");
+                            console.log(nextDelimiter);
+
+                            if (nextDelimiter == null) {
+                                //TODO ERROR
+                                return;
+                            }
+                            if (nextDelimiter.value === "{") depth++;
+                            else if (nextDelimiter.value === "}") {
+                                depth--;
+                                scriptEnd = nextDelimiter.end;
+                            }
+                        }
+                        let script = template.substring(scriptBegin + 1, scriptEnd);
+                        console.log(script);
+                        let parsedScript = acornParse(script, { sourceType: 'module', ecmaVersion: 2016 })
+                        console.log(parsedScript);
+                        break;
+                    }
                 default:
-                    error(ParseError.unknown_type(type), this.line.number);
+                    if (token.type === "unknown") error(ParseError.unknown_type(token.value), this.line.number);
+                    else error(ParseError.invalid_usage(token.type, token.value), this.line.number);
                     break;
             }
         }
@@ -62,6 +96,15 @@ export default class Parser {
             let current = this.stack.pop();
             this.getCurrent().children.push(current as Element); //Force element type
         }
+    }
+
+    nextUntil = (type: string) => {
+        let token = this.lexer.next();
+        while (token !== null) {
+            if (token.type == type) return token;
+            token = this.lexer.next();
+        }
+        return null;
     }
 
     getCurrent = () => this.stack[this.stack.length - 1];

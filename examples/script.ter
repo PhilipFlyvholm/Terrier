@@ -1,0 +1,9 @@
+@script {
+    const hello = "world";
+    let button;
+    let color = "yello"
+
+    const buttonClick = () => {
+        console.log("clicked");
+    }
+}

@@ -1,6 +1,12 @@
-import text from "components/text.json"
-import center from "components/center.json"
+@script {
+    const hello = "world";
+    let button;
+    let color = "yello"
 
+    const buttonClick = () => {
+        console.log("clicked");
+    }
+}
 html
     head
         meta charset="utf-8"
@@ -48,14 +54,3 @@ html
             foreach {["bing", "bong"]} as item
                 center
                     text
-
-
-@js {
-    const hello = "world";
-    let button;
-    let color = "yello"
-
-    const buttonClick = () => {
-        console.log("clicked");
-    }
-}

@@ -1,6 +1,5 @@
 // @ts-ignore
 import Parser from "../../build/parser/Parser.js";
-import { getLexer } from "../../build/parser/Lexer.js";
 import fs from 'fs';
 import assert from 'assert';
 import path from 'path';
@@ -20,8 +19,7 @@ describe('Parser', function () {
                 const output = fs.readFileSync(__dirname + '/cases/' + file + '/output.json', 'utf8');
                 if (!output) throw new Error('No output file found');
 
-                const lexer = getLexer(input);
-                const parser = new Parser(lexer);
+                const parser = new Parser(input);
                 assert.ok(parser);
                 assert.deepEqual(parser.stack, JSON.parse(output));
             });

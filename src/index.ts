@@ -1,6 +1,5 @@
 import fs from 'fs';
 import isEmptyTag from './utils/emptyTags.js';
-import {getLexer} from './parser/Lexer.js';
 import Parser from './parser/Parser.js';
 
 interface ParseData {
@@ -275,13 +274,12 @@ const convertToHTML = (tags: Tag[]) => {
 }*/
 
 const parserTest = async () => {
-  await fs.readFile('./examples/short.ter', (err: any, data: any) => {
+  await fs.readFile('./examples/script.ter', (err: any, data: any) => {
     if (err) {
       console.error(err);
       return;
     }
-    const lexer = getLexer(data.toString());
-    const parser = new Parser(lexer);
+    const parser = new Parser(data.toString());
     parser.printStack();
   });
 }
