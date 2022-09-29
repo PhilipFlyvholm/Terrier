@@ -274,7 +274,7 @@ const convertToHTML = (tags: Tag[]) => {
 }*/
 
 const parserTest = async () => {
-  await fs.readFile('./examples/index.ter', (err: any, data: any) => {
+  await fs.readFile('./examples/short.ter', (err: any, data: any) => {
     if (err) {
       console.error(err);
       return;

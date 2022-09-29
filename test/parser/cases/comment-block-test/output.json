@@ -1,0 +1,292 @@
+[
+    {
+        "attributes": [],
+        "is_self_closing": false,
+        "type": "element",
+        "begin": 0,
+        "children": [
+            {
+                "attributes": [],
+                "is_self_closing": false,
+                "type": "element",
+                "begin": 39,
+                "children": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 87,
+                                "name": "charset",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 95,
+                                    "text": "utf-8",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 82,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [],
+                        "is_self_closing": false,
+                        "type": "element",
+                        "begin": 141,
+                        "children": [
+                            {
+                                "type": "text",
+                                "begin": 189,
+                                "text": "Hello mate",
+                                "isEscaped": true
+                            }
+                        ],
+                        "tag": "title",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 245,
+                                "name": "content",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 253,
+                                    "text": "width=device-width, initial-scale=1",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 291,
+                                "name": "name",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 296,
+                                    "text": "viewport",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 240,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 378,
+                                "name": "http-equiv",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 389,
+                                    "text": "Content-type",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 404,
+                                "name": "content",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 412,
+                                    "text": "text/html; charset=utf-8",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 345,
+                        "children": [],
+                        "tag": "meta",
+                        "indent": 9
+                    },
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 482,
+                                "name": "rel",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 486,
+                                    "text": "stylesheet",
+                                    "isEscaped": true
+                                }
+                            },
+                            {
+                                "type": "attribute",
+                                "begin": 499,
+                                "name": "href",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 504,
+                                    "text": "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": true,
+                        "type": "element",
+                        "begin": 477,
+                        "children": [],
+                        "tag": "link",
+                        "indent": 9
+                    }
+                ],
+                "tag": "head",
+                "indent": 5
+            },
+            {
+                "attributes": [
+                    {
+                        "type": "attribute",
+                        "begin": 618,
+                        "name": "class",
+                        "value": {
+                            "type": "text",
+                            "begin": 624,
+                            "text": "body",
+                            "isEscaped": true
+                        }
+                    }
+                ],
+                "is_self_closing": false,
+                "type": "element",
+                "begin": 613,
+                "children": [
+                    {
+                        "attributes": [
+                            {
+                                "type": "attribute",
+                                "begin": 645,
+                                "name": "class",
+                                "value": {
+                                    "type": "text",
+                                    "begin": 651,
+                                    "text": "box",
+                                    "isEscaped": true
+                                }
+                            }
+                        ],
+                        "is_self_closing": false,
+                        "type": "element",
+                        "begin": 641,
+                        "children": [
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 810,
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 816,
+                                            "text": "text-3xl bold",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 807,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 832,
+                                        "text": "jhtml",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "h1",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [],
+                                "is_self_closing": true,
+                                "type": "element",
+                                "begin": 882,
+                                "children": [],
+                                "tag": "br",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 929,
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 935,
+                                            "text": "bold italic",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 927,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 949,
+                                        "text": "This webpage is created using json and is converted into HTML",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "p",
+                                "indent": 13
+                            },
+                            {
+                                "attributes": [
+                                    {
+                                        "type": "attribute",
+                                        "begin": 1079,
+                                        "name": "class",
+                                        "value": {
+                                            "type": "text",
+                                            "begin": 1085,
+                                            "text": "bling",
+                                            "isEscaped": true
+                                        }
+                                    }
+                                ],
+                                "is_self_closing": false,
+                                "type": "element",
+                                "begin": 1055,
+                                "children": [
+                                    {
+                                        "type": "text",
+                                        "begin": 1057,
+                                        "text": "For more infomation",
+                                        "isEscaped": true
+                                    }
+                                ],
+                                "tag": "p",
+                                "indent": 13
+                            }
+                        ],
+                        "tag": "div",
+                        "indent": 9
+                    }
+                ],
+                "tag": "body",
+                "indent": 5
+            }
+        ],
+        "tag": "html",
+        "indent": 0
+    }
+]
