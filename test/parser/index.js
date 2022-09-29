@@ -14,7 +14,7 @@ describe('Parser', function () {
             const dir = fs.lstatSync(__dirname + '/cases/' + file);
             if (!dir.isDirectory()) return;
             it('should parse ' + file, function () {
-                const input = fs.readFileSync(__dirname + '/cases/' + file + '/input.ter', 'utf8');
+                const input = fs.readFileSync(__dirname + '/cases/' + file + '/input.ter', 'utf8').replace(/\r/g, ''); //Windows be like: nEwLIne iS \r\n 
                 if (!input) throw new Error('No input file found');
                 const output = fs.readFileSync(__dirname + '/cases/' + file + '/output.json', 'utf8');
                 if (!output) throw new Error('No output file found');
