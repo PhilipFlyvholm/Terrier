@@ -43,9 +43,9 @@ html
     body class="body"
         div class="box"
             h1 class="text-3xl bold": "jhtml"
-            br
+            br #
             p class="bold italic": "This webpage is created using json and is converted into HTML"
-            p {color}: "For more infomation" // <p color="yellow">For more infomation</p>
+            p {color}: "For more infomation" <!-- <p color="yellow">For more infomation</p> -->
             button type="submit" @ref={button} @on:click={buttonClick} : "Submit"
             if (x == 5)
                 p: "x is five"

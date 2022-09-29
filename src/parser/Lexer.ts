@@ -13,6 +13,8 @@ def.define("special", "@[a-zA-Z][a-zA-Z]*",
     function (value: string) {
         return value.substring(1); // removing initial @
     });
+def.defineComment('//');
+def.defineComment('<!--','-->');
 
 export enum LexTypes {
     Attribute = "attribute",

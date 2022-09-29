@@ -1,4 +1,4 @@
-@js {
+@script {
     import text from "components/text.json"
     import center from "components/center.json"
 }
@@ -38,12 +38,12 @@ html
                     }
                 }
             '
-    body class="body"
-        div class="box"
+    body class="body" //comment test
+        div <!--Second comment test --> class="box"
             h1 class="text-3xl bold"
                 "jhtml"
             br
             p class="bold italic"
                 "This webpage is created using json and is converted into HTML"
-            p:
+            p
                 "For more infomation"
