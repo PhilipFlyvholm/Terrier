@@ -9,17 +9,17 @@
                 "attributes": [],
                 "is_self_closing": false,
                 "type": "element",
-                "begin": 39,
+                "begin": 38,
                 "children": [
                     {
                         "attributes": [
                             {
                                 "type": "attribute",
-                                "begin": 87,
+                                "begin": 85,
                                 "name": "charset",
                                 "value": {
                                     "type": "text",
-                                    "begin": 95,
+                                    "begin": 93,
                                     "text": "utf-8",
                                     "isEscaped": true
                                 }
@@ -27,7 +27,7 @@
                         ],
                         "is_self_closing": true,
                         "type": "element",
-                        "begin": 82,
+                        "begin": 80,
                         "children": [],
                         "tag": "meta",
                         "indent": 9
@@ -36,11 +36,11 @@
                         "attributes": [],
                         "is_self_closing": false,
                         "type": "element",
-                        "begin": 141,
+                        "begin": 138,
                         "children": [
                             {
                                 "type": "text",
-                                "begin": 189,
+                                "begin": 185,
                                 "text": "Hello mate",
                                 "isEscaped": true
                             }
@@ -52,22 +52,22 @@
                         "attributes": [
                             {
                                 "type": "attribute",
-                                "begin": 245,
+                                "begin": 240,
                                 "name": "content",
                                 "value": {
                                     "type": "text",
-                                    "begin": 253,
+                                    "begin": 248,
                                     "text": "width=device-width, initial-scale=1",
                                     "isEscaped": true
                                 }
                             },
                             {
                                 "type": "attribute",
-                                "begin": 291,
+                                "begin": 286,
                                 "name": "name",
                                 "value": {
                                     "type": "text",
-                                    "begin": 296,
+                                    "begin": 291,
                                     "text": "viewport",
                                     "isEscaped": true
                                 }
@@ -75,7 +75,7 @@
                         ],
                         "is_self_closing": true,
                         "type": "element",
-                        "begin": 240,
+                        "begin": 235,
                         "children": [],
                         "tag": "meta",
                         "indent": 9
@@ -84,22 +84,22 @@
                         "attributes": [
                             {
                                 "type": "attribute",
-                                "begin": 378,
+                                "begin": 372,
                                 "name": "http-equiv",
                                 "value": {
                                     "type": "text",
-                                    "begin": 389,
+                                    "begin": 383,
                                     "text": "Content-type",
                                     "isEscaped": true
                                 }
                             },
                             {
                                 "type": "attribute",
-                                "begin": 404,
+                                "begin": 398,
                                 "name": "content",
                                 "value": {
                                     "type": "text",
-                                    "begin": 412,
+                                    "begin": 406,
                                     "text": "text/html; charset=utf-8",
                                     "isEscaped": true
                                 }
@@ -107,7 +107,7 @@
                         ],
                         "is_self_closing": true,
                         "type": "element",
-                        "begin": 345,
+                        "begin": 339,
                         "children": [],
                         "tag": "meta",
                         "indent": 9
@@ -116,22 +116,22 @@
                         "attributes": [
                             {
                                 "type": "attribute",
-                                "begin": 482,
+                                "begin": 475,
                                 "name": "rel",
                                 "value": {
                                     "type": "text",
-                                    "begin": 486,
+                                    "begin": 479,
                                     "text": "stylesheet",
                                     "isEscaped": true
                                 }
                             },
                             {
                                 "type": "attribute",
-                                "begin": 499,
+                                "begin": 492,
                                 "name": "href",
                                 "value": {
                                     "type": "text",
-                                    "begin": 504,
+                                    "begin": 497,
                                     "text": "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
                                     "isEscaped": true
                                 }
@@ -139,7 +139,7 @@
                         ],
                         "is_self_closing": true,
                         "type": "element",
-                        "begin": 477,
+                        "begin": 470,
                         "children": [],
                         "tag": "link",
                         "indent": 9
@@ -152,11 +152,11 @@
                 "attributes": [
                     {
                         "type": "attribute",
-                        "begin": 618,
+                        "begin": 610,
                         "name": "class",
                         "value": {
                             "type": "text",
-                            "begin": 624,
+                            "begin": 616,
                             "text": "body",
                             "isEscaped": true
                         }
@@ -164,17 +164,17 @@
                 ],
                 "is_self_closing": false,
                 "type": "element",
-                "begin": 613,
+                "begin": 605,
                 "children": [
                     {
                         "attributes": [
                             {
                                 "type": "attribute",
-                                "begin": 645,
+                                "begin": 636,
                                 "name": "class",
                                 "value": {
                                     "type": "text",
-                                    "begin": 651,
+                                    "begin": 642,
                                     "text": "box",
                                     "isEscaped": true
                                 }
@@ -182,17 +182,17 @@
                         ],
                         "is_self_closing": false,
                         "type": "element",
-                        "begin": 641,
+                        "begin": 632,
                         "children": [
                             {
                                 "attributes": [
                                     {
                                         "type": "attribute",
-                                        "begin": 810,
+                                        "begin": 796,
                                         "name": "class",
                                         "value": {
                                             "type": "text",
-                                            "begin": 816,
+                                            "begin": 802,
                                             "text": "text-3xl bold",
                                             "isEscaped": true
                                         }
@@ -200,11 +200,11 @@
                                 ],
                                 "is_self_closing": false,
                                 "type": "element",
-                                "begin": 807,
+                                "begin": 793,
                                 "children": [
                                     {
                                         "type": "text",
-                                        "begin": 832,
+                                        "begin": 818,
                                         "text": "jhtml",
                                         "isEscaped": true
                                     }
@@ -216,7 +216,7 @@
                                 "attributes": [],
                                 "is_self_closing": true,
                                 "type": "element",
-                                "begin": 882,
+                                "begin": 867,
                                 "children": [],
                                 "tag": "br",
                                 "indent": 13
@@ -225,11 +225,11 @@
                                 "attributes": [
                                     {
                                         "type": "attribute",
-                                        "begin": 929,
+                                        "begin": 913,
                                         "name": "class",
                                         "value": {
                                             "type": "text",
-                                            "begin": 935,
+                                            "begin": 919,
                                             "text": "bold italic",
                                             "isEscaped": true
                                         }
@@ -237,11 +237,11 @@
                                 ],
                                 "is_self_closing": false,
                                 "type": "element",
-                                "begin": 927,
+                                "begin": 911,
                                 "children": [
                                     {
                                         "type": "text",
-                                        "begin": 949,
+                                        "begin": 933,
                                         "text": "This webpage is created using json and is converted into HTML",
                                         "isEscaped": true
                                     }
@@ -253,11 +253,11 @@
                                 "attributes": [
                                     {
                                         "type": "attribute",
-                                        "begin": 1079,
+                                        "begin": 1062,
                                         "name": "class",
                                         "value": {
                                             "type": "text",
-                                            "begin": 1085,
+                                            "begin": 1068,
                                             "text": "bling",
                                             "isEscaped": true
                                         }
@@ -265,11 +265,11 @@
                                 ],
                                 "is_self_closing": false,
                                 "type": "element",
-                                "begin": 1055,
+                                "begin": 1038,
                                 "children": [
                                     {
                                         "type": "text",
-                                        "begin": 1057,
+                                        "begin": 1040,
                                         "text": "For more infomation",
                                         "isEscaped": true
                                     }
