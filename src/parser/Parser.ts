@@ -6,7 +6,6 @@ import Attribute from './Nodes/Attribute.js';
 import { error, ParseError } from './Utils/ParseError.js';
 import Text from './Nodes/Text.js';
 import { parse as acornParse } from 'acorn';
-
 export default class Parser {
     private lexer: Lexer;
     private line = {
@@ -26,7 +25,7 @@ export default class Parser {
             switch (type) {
                 case LexTypes.Newline:
                     this.line = {
-                        number: this.line.number + 1,
+                        number: template.substring(0, token.end).split(/\r\n|\r|\n/).length,
                         startIndex: token.end
                     }
                     break;
@@ -149,7 +148,7 @@ export default class Parser {
     calculateIndent = (token: Token): number => token.begin - this.line.startIndex
 
 
-    printStack = () => {
+    printStack = () => {        
         console.log(this.stack);
     }
 }
