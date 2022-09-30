@@ -5,6 +5,7 @@ import Element from './Nodes/Element.js';
 import Attribute from './Nodes/Attribute.js';
 import { error, ParseError } from './Utils/ParseError.js';
 import Text from './Nodes/Text.js';
+import CalculateLine from './Utils/CalculateLine.js';
 import { parse as acornParse } from 'acorn';
 export default class Parser {
     private lexer: Lexer;
@@ -25,11 +26,15 @@ export default class Parser {
             switch (type) {
                 case LexTypes.Newline:
                     this.line = {
-                        number: template.substring(0, token.end).split(/\r\n|\r|\n/).length,
+                        number: CalculateLine(template, token.end),
                         startIndex: token.end
                     }
                     break;
                 case LexTypes.Keyword:
+                    if(this.getCurrent() && this.line.number <= CalculateLine(template, this.getCurrent().begin)-1){                        
+                        error(ParseError.multiple_elements_on_same_line(token.value), this.line.number);
+                        return;
+                    }
                     if (!this.newChild(indent)) return;
                     let element = new Element(token.begin, token.value, indent);
                     this.stack.push(element);

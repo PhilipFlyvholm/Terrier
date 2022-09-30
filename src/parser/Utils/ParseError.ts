@@ -24,5 +24,9 @@ export const ParseError = {
     arg_missing_value: {
         refCode: "missing_value",
         message: "Argument is missing string value"
-    }
+    },
+    multiple_elements_on_same_line: (type: string) => ({
+        refCode: "invalid_syntax_multiple_elements",
+        message: `Can't place an "${type}" element on same line`
+    })
 }
