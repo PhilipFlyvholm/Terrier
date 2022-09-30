@@ -10,13 +10,13 @@
 html
     head
         meta charset="utf-8"
-        title: "Hello mate"
+        title > "Hello mate"
         meta content="width=device-width, initial-scale=1" name="viewport"
         meta http-equiv="Content-type" content="text/html; charset=utf-8"
         link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         script src="https://cdn.tailwindcss.com"
         style type="text/css"
-            ' body {
+             'body {
                     background-color: #f0f0f2;
                     margin: 0;
                     padding: 0;
@@ -42,15 +42,12 @@ html
                 }'
     body class="body"
         div class="box"
-            h1 class="text-3xl bold": "jhtml"
-            br #
-            p class="bold italic": "This webpage is created using json and is converted into HTML"
-            p {color}: "For more infomation" <!-- <p color="yellow">For more infomation</p> -->
-            button type="submit" @ref={button} @on:click={buttonClick} : "Submit"
-            if (x == 5)
-                p: "x is five"
-            else
-                p: "x is not five, but {x}"
+            h1 class="text-3xl bold" > "jhtml"
+            br
+            p class="bold italic" > "This webpage is created using json and is converted into HTML"
+            p {color} > "For more infomation" // <p color="yellow">For more infomation</p>
+            button type="submit" @ref={button} @on:click={buttonClick} > "Submit"
+            if (x == 5) > p > "x is five"
+            else > p > "x is not five, but {x}"
             foreach {["bing", "bong"]} as item
-                center
-                    text
+                center > text
