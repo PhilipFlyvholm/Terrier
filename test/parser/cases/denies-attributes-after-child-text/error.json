@@ -1,4 +1,4 @@
 {
-    "message": "invalid_syntax_multiple_elements: Can't place an \"class\" element on same line (Line: 1)",
+    "message": "invalid_syntax_attribute_after_child: Can't place an attribute \"id\" after child element (Line: 1)",
     "name": "Error"
 }

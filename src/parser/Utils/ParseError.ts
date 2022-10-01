@@ -28,5 +28,9 @@ export const ParseError = {
     multiple_elements_on_same_line: (type: string) => ({
         refCode: "invalid_syntax_multiple_elements",
         message: `Can't place an "${type}" element on same line`
-    })
+    }),
+    attribute_after_child: (attributeName: string) => ({
+        refCode: "invalid_syntax_attribute_after_child",
+        message: `Can't place an attribute "${attributeName}" after child element`
+    }),
 }

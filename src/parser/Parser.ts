@@ -31,7 +31,7 @@ export default class Parser {
                     }
                     break;
                 case LexTypes.Keyword:
-                    if(this.getCurrent() && this.line.number <= CalculateLine(template, this.getCurrent().begin)-1){                        
+                    if (this.getCurrent() && this.line.number <= CalculateLine(template, this.getCurrent().begin) - 1) {
                         error(ParseError.multiple_elements_on_same_line(token.value), this.line.number);
                         return;
                     }
@@ -42,6 +42,15 @@ export default class Parser {
                 case LexTypes.Attribute:
                     let attributeName = token.value;
                     let attributeBegin = token.begin;
+                    if (!this.getCurrent()) {
+                        //error(ParseError.attribute_without_element(attributeName), this.line.number);
+                        console.log("TODO: Implement error handling - attribute without element - Parser: 47");
+                        return;
+                    }
+                    if(this.getCurrent().children.length > 0) {
+                        error(ParseError.attribute_after_child(attributeName), this.line.number);
+                        return;
+                    }
                     token = this.lexer.next();
                     if (token.type !== LexTypes.String) {
                         error(ParseError.arg_missing_value, this.line.number);
@@ -153,7 +162,7 @@ export default class Parser {
     calculateIndent = (token: Token): number => token.begin - this.line.startIndex
 
 
-    printStack = () => {        
+    printStack = () => {
         console.log(this.stack);
     }
 }

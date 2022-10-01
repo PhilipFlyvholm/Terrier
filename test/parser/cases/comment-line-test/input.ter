@@ -11,4 +11,4 @@ html //This will get ignored
             h1 class="text-3xl bold" "jhtml" //This will get ignored
             br //This will get ignored
             p class="bold italic" "This webpage is created using json and is converted into HTML" //This will get ignored
-            p "For more infomation" class="bling" //This will get ignored
+            p "For more infomation" //This will get ignored

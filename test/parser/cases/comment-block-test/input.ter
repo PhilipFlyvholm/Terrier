@@ -15,4 +15,4 @@ html <!--This will be ignored -->
             h1 class="text-3xl bold" "jhtml" <!--This will be ignored -->
             br <!--This will be ignored -->
             p class="bold italic" "This webpage is created using json and is converted into HTML" <!--This will be ignored -->
-            p "For more infomation" class="bling" <!--This will be ignored -->
+            p class="bling" "For more infomation" <!--This will be ignored -->

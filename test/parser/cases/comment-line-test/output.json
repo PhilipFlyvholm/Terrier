@@ -250,19 +250,7 @@
                                 "indent": 13
                             },
                             {
-                                "attributes": [
-                                    {
-                                        "type": "attribute",
-                                        "begin": 893,
-                                        "name": "class",
-                                        "value": {
-                                            "type": "text",
-                                            "begin": 899,
-                                            "text": "bling",
-                                            "isEscaped": true
-                                        }
-                                    }
-                                ],
+                                "attributes": [],
                                 "is_self_closing": false,
                                 "type": "element",
                                 "begin": 869,
