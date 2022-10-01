@@ -17,6 +17,7 @@ export default class Parser {
         startIndex: 0
     }
     public stack: Fragment[] = [];
+    public warnings: string[] = [];
     //private ast: Node | null;
 
     constructor(template: string) {
@@ -195,8 +196,7 @@ export default class Parser {
             while (indent <= this.getCurrent().indent) {
                 let current = this.stack.pop();
                 if (typeof current === "undefined") {
-                    //TODO: Implement warning system
-                    console.warn("WARNING: Invalid indent will assume indent 0");
+                    this.addWarning("Invalid indent will assume indent 0");
                     return false;
                 }
                 if (typeof this.getCurrent() === "undefined") {
@@ -215,8 +215,7 @@ export default class Parser {
             //  div <--
             let current = this.stack.pop();
             if (typeof current === "undefined") {
-                //TODO: Implement warning system
-                console.warn("WARNING: Invalid indent will assume indent 0");
+                this.addWarning("Invalid indent will assume indent 0");
                 return false;
             }
             if (typeof this.getCurrent() === "undefined" || indent === this.getCurrent().indent) {
@@ -231,6 +230,7 @@ export default class Parser {
 
     calculateIndent = (token: Token): number => token.begin - this.line.startIndex
 
+    private addWarning = (warning: string) => this.warnings.push(`Warning: ${warning} (Line: ${this.line.number})`);
 
     printStack = () => {
         console.log(this.stack);
