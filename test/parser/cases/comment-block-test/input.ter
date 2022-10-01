@@ -1,18 +1,3 @@
 html <!--This will be ignored -->
-    head <!--This will be ignored -->
-        meta charset="utf-8" <!--This will be ignored -->
-        title <!--This will be ignored -->
-            "Hello mate" <!--This will be ignored -->
-        meta content="width=device-width, initial-scale=1" name="viewport" <!--This will be ignored -->
-        meta <!--This will be ignored--> http-equiv="Content-type" content="text/html; charset=utf-8" <!--This will be ignored -->
-        link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" <!--This will be ignored -->
-    body class="body" 
-        div class="box" <!--This will be ignored-->
-            <!-- This
-            is
-            a multiline comment
-            This will be ignored-->
-            h1 class="text-3xl bold" "jhtml" <!--This will be ignored -->
-            br <!--This will be ignored -->
-            p class="bold italic" "This webpage is created using json and is converted into HTML" <!--This will be ignored -->
-            p class="bling" "For more infomation" <!--This will be ignored -->
+    head <!--Empty head -->
+    body <!-- Ignore me--> class="body"

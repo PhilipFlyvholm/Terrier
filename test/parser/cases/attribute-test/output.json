@@ -1,0 +1,24 @@
+[
+    {
+        "type": "element",
+        "begin": 0,
+        "indent": 0,
+        "children": [],
+        "attributes": [
+            {
+                "type": "attribute",
+                "begin": 5,
+                "name": "lang",
+                "value": {
+                    "type": "text",
+                    "begin": 10,
+                    "text": "en",
+                    "isEscaped": true
+                }
+            }
+        ],
+        "is_self_closing": false,
+        "is_inline": false,
+        "tag": "html"
+    }
+]

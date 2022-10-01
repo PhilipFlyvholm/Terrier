@@ -1,19 +1,22 @@
 import { Lexer, Token } from './Interfaces';
-//import Node from "./Nodes/Node";
 import { LexTypes, getLexer } from './Lexer.js';
+import { parse as acornParse } from 'acorn';
+import { error, ParseError } from './Utils/ParseError.js';
+import CalculateLine from './Utils/CalculateLine.js';
+
 import Element from './Nodes/Element.js';
 import Attribute from './Nodes/Attribute.js';
-import { error, ParseError } from './Utils/ParseError.js';
 import Text from './Nodes/Text.js';
-import CalculateLine from './Utils/CalculateLine.js';
-import { parse as acornParse } from 'acorn';
+import Fragment from './Nodes/Fragment.js';
+import Node from './Nodes/Node';
+
 export default class Parser {
     private lexer: Lexer;
     private line = {
         number: 1,
         startIndex: 0
     }
-    public stack: Element[] = [];
+    public stack: Fragment[] = [];
     //private ast: Node | null;
 
     constructor(template: string) {
@@ -27,11 +30,11 @@ export default class Parser {
                 case LexTypes.Newline:
                     this.line = {
                         number: CalculateLine(template, token.end),
-                        startIndex: token.end
+                        startIndex: token.end + 1
                     }
                     break;
                 case LexTypes.Keyword:
-                    if (this.getCurrent() && this.line.number <= CalculateLine(template, this.getCurrent().begin) - 1) {
+                    if (this.getCurrent() && (this.getCurrent().type == "element" && !(this.getCurrent() as Element).is_inline) && this.line.number <= CalculateLine(template, this.getCurrent().begin) - 1) {
                         error(ParseError.multiple_elements_on_same_line(token.value), this.line.number);
                         return;
                     }
@@ -47,7 +50,11 @@ export default class Parser {
                         console.log("TODO: Implement error handling - attribute without element - Parser: 47");
                         return;
                     }
-                    if(this.getCurrent().children.length > 0) {
+                    if (this.getCurrent().type !== "element") {
+                        console.log("TODO: Implement error handling - non-elements can't have attributes - Parser: 51");
+                        return;
+                    }
+                    if (this.getCurrent().children.length > 0) {
                         error(ParseError.attribute_after_child(attributeName), this.line.number);
                         return;
                     }
@@ -58,7 +65,7 @@ export default class Parser {
                     }
                     let attributeValue = new Text(token.begin, token.value, true);
                     let attribute = new Attribute(attributeBegin, attributeName, attributeValue);
-                    this.getCurrent().attributes.push(attribute);
+                    (this.getCurrent() as Element).attributes.push(attribute);
                     break;
                 case LexTypes.String:
                     if (!this.newChild(indent)) return;
@@ -97,17 +104,71 @@ export default class Parser {
                         console.log(parsedScript);
                         break;
                     }
+                case LexTypes.Delimiter:
+                    switch (token.value) {
+                        case ">":
+                            if (!this.getCurrent()) {
+                                error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                return;
+                            }
+                            if (this.getCurrent().type !== "element") {
+                                error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                return;
+                            }
+                            (this.getCurrent() as Element).is_inline = true;
+                            break;
+                        case "(":
+                            let fragment = new Fragment(token.begin, indent);
+                            this.stack.push(fragment);
+                            break;
+                        case ")":
+                            if (!this.getCurrent()) {
+                                console.log("here");
+
+                                error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                return;
+                            }
+                            while (this.getCurrent().type !== "fragment") {
+                                let current = this.stack.pop();
+                                if (!this.getCurrent()) {
+                                    error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                    return;
+                                }
+                                this.getCurrent().children.push(current as Node);
+                            }
+                            let current = this.stack.pop();
+                            this.getCurrent().children.push(current as Node);
+                            break;
+                        case "+":
+                            if (!this.getCurrent()) {
+                                error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                return;
+                            }
+                            let sibling = this.stack.pop();
+                            if (!this.getCurrent()) {
+                                error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                                return;
+                            }
+                            this.getCurrent().children.push(sibling as Node);
+                            break;
+                        default:
+                            error(ParseError.invalid_usage(token.type, token.value), this.line.number);
+                            break;
+                    }
+                    break;
                 default:
                     if (token.type === "unknown") error(ParseError.unknown_type(token.value), this.line.number);
                     else error(ParseError.invalid_usage(token.type, token.value), this.line.number);
                     break;
             }
         }
+
         //Final stack clean up. 
         while (typeof this.stack[this.stack.length - 2] !== "undefined" &&
-            this.stack[this.stack.length - 2].indent <= this.getCurrent().indent) {
+            this.stack[this.stack.length - 2].indent < this.getCurrent().indent) {
             let current = this.stack.pop();
-            this.getCurrent().children.push(current as Element); //Force element type
+
+            this.getCurrent().children.push(current as Node); //Force node type
         }
     }
 
@@ -139,6 +200,11 @@ export default class Parser {
                     console.warn("WARNING: Invalid indent will assume indent 0");
                     return false;
                 }
+                if (typeof this.getCurrent() === "undefined") {
+                    //rebuild stack
+                    this.stack.push(current);
+                    return true;
+                }
                 this.getCurrent().children.push(current as Element); //Force element type
             }
         } else if (indent === this.getCurrent().indent) {
@@ -149,10 +215,15 @@ export default class Parser {
             //    span
             //  div <--
             let current = this.stack.pop();
-            if (typeof current === undefined) {
+            if (typeof current === "undefined") {
                 //TODO: Implement warning system
                 console.warn("WARNING: Invalid indent will assume indent 0");
                 return false;
+            }
+            if (typeof this.getCurrent() === "undefined" || indent === this.getCurrent().indent) {
+                //rebuild stack
+                this.stack.push(current);
+                return true;
             }
             this.getCurrent().children.push(current as Element); //Force element type
         }

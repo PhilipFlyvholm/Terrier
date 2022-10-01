@@ -8,7 +8,8 @@ html
         link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     body class="body"
         div class="box"
-            h1 class="text-3xl bold" "jhtml"
+            h1 class="text-3xl bold" > "Hello mate"
             br
             p class="bold italic" "This webpage is created using json and is converted into HTML"
-            p "For more infomation" class="bling"
+            p class="bling" > (h1 "jhtml" + " is awesome")
+            p class="bling2" > "hello"

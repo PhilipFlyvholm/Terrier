@@ -1,14 +1,3 @@
-html //This will get ignored
-    head //This will get ignored
-        meta charset="utf-8" //This will get ignored
-        title //This will get ignored
-            "Hello mate" //This will get ignored
-        meta content="width=device-width, initial-scale=1" name="viewport" //This will get ignored
-        meta http-equiv="Content-type" content="text/html; charset=utf-8" //This will get ignored
-        link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" //This will get ignored
-    body class="body" //This will get ignored
-        div class="box" //This will get ignored
-            h1 class="text-3xl bold" "jhtml" //This will get ignored
-            br //This will get ignored
-            p class="bold italic" "This webpage is created using json and is converted into HTML" //This will get ignored
-            p "For more infomation" //This will get ignored
+html // This will be ignored
+    head // Empty head
+    body // class="body"

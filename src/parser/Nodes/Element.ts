@@ -1,22 +1,18 @@
-import Node from './Node';
 import isEmptyTag from '../../utils/emptyTags.js';
 import Attribute from './Attribute';
+import Fragment from './Fragment.js';
 
-export default class Element implements Node {
-    public type: string;
-    public begin: number;
-    public children: Node[];
+export default class Element extends Fragment {
     public tag: string;
     public attributes: Attribute[] = [];
     public is_self_closing = false;
-    public indent: number;
-    constructor(begin: number, tag: string, indent:number) {
-        this.type = "element";
-        this.begin = begin;
-        this.children = [];
+    public is_inline = false;
+
+    constructor(begin: number, tag: string, indent: number) {
+        super(begin, indent);
+        super.type = "element";
         this.tag = tag;
         this.is_self_closing = isEmptyTag(tag);
-        this.indent = indent;
     }
-    
+
 }
