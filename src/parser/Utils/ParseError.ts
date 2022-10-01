@@ -33,4 +33,12 @@ export const ParseError = {
         refCode: "invalid_syntax_attribute_after_child",
         message: `Can't place an attribute "${attributeName}" after child element`
     }),
+    attribute_without_element: (attributeName: string) => ({
+        refCode: "invalid_syntax_attribute_without_element",
+        message: `Can't place an attribute "${attributeName}" without element`
+    }),
+    non_element_attribute: {
+        refCode: "invalid_syntax_non_element_attribute",
+        message: `Only elemenenets can have attributes`
+    }
 }

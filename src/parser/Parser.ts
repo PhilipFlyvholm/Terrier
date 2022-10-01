@@ -46,12 +46,11 @@ export default class Parser {
                     let attributeName = token.value;
                     let attributeBegin = token.begin;
                     if (!this.getCurrent()) {
-                        //error(ParseError.attribute_without_element(attributeName), this.line.number);
-                        console.log("TODO: Implement error handling - attribute without element - Parser: 47");
+                        error(ParseError.attribute_without_element(attributeName), this.line.number);
                         return;
                     }
                     if (this.getCurrent().type !== "element") {
-                        console.log("TODO: Implement error handling - non-elements can't have attributes - Parser: 51");
+                        error(ParseError.non_element_attribute, this.line.number);
                         return;
                     }
                     if (this.getCurrent().children.length > 0) {

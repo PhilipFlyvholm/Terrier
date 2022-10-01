@@ -1,0 +1,4 @@
+{
+    "name": "Error",
+    "message": "invalid_syntax_attribute_without_element: Can't place an attribute \"class\" without element (Line: 1)"
+}

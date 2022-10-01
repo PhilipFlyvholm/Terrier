@@ -1,0 +1,4 @@
+{
+    "name": "Error",
+    "message": "invalid_syntax_non_element_attribute: Only elemenenets can have attributes (Line: 2)"
+}
