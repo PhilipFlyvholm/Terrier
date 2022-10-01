@@ -29,6 +29,7 @@ describe('Parser', function () {
 
                     const parser = new Parser(input);
                     assert.ok(parser);
+                    assert.equal(parser.warnings.length, 0);
                     //fs.writeFileSync(__dirname + '/cases/' + file + '/output-actual.json', JSON.stringify(parser.stack));
                     assert.deepEqual(parser.stack, JSON.parse(output));
                 });
