@@ -1,292 +1,45 @@
 [
     {
-        "attributes": [],
-        "is_self_closing": false,
         "type": "element",
         "begin": 0,
+        "indent": 0,
         "children": [
             {
-                "attributes": [],
-                "is_self_closing": false,
                 "type": "element",
                 "begin": 38,
-                "children": [
-                    {
-                        "attributes": [
-                            {
-                                "type": "attribute",
-                                "begin": 85,
-                                "name": "charset",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 93,
-                                    "text": "utf-8",
-                                    "isEscaped": true
-                                }
-                            }
-                        ],
-                        "is_self_closing": true,
-                        "type": "element",
-                        "begin": 80,
-                        "children": [],
-                        "tag": "meta",
-                        "indent": 9
-                    },
-                    {
-                        "attributes": [],
-                        "is_self_closing": false,
-                        "type": "element",
-                        "begin": 138,
-                        "children": [
-                            {
-                                "type": "text",
-                                "begin": 185,
-                                "text": "Hello mate",
-                                "isEscaped": true
-                            }
-                        ],
-                        "tag": "title",
-                        "indent": 9
-                    },
-                    {
-                        "attributes": [
-                            {
-                                "type": "attribute",
-                                "begin": 240,
-                                "name": "content",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 248,
-                                    "text": "width=device-width, initial-scale=1",
-                                    "isEscaped": true
-                                }
-                            },
-                            {
-                                "type": "attribute",
-                                "begin": 286,
-                                "name": "name",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 291,
-                                    "text": "viewport",
-                                    "isEscaped": true
-                                }
-                            }
-                        ],
-                        "is_self_closing": true,
-                        "type": "element",
-                        "begin": 235,
-                        "children": [],
-                        "tag": "meta",
-                        "indent": 9
-                    },
-                    {
-                        "attributes": [
-                            {
-                                "type": "attribute",
-                                "begin": 372,
-                                "name": "http-equiv",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 383,
-                                    "text": "Content-type",
-                                    "isEscaped": true
-                                }
-                            },
-                            {
-                                "type": "attribute",
-                                "begin": 398,
-                                "name": "content",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 406,
-                                    "text": "text/html; charset=utf-8",
-                                    "isEscaped": true
-                                }
-                            }
-                        ],
-                        "is_self_closing": true,
-                        "type": "element",
-                        "begin": 339,
-                        "children": [],
-                        "tag": "meta",
-                        "indent": 9
-                    },
-                    {
-                        "attributes": [
-                            {
-                                "type": "attribute",
-                                "begin": 475,
-                                "name": "rel",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 479,
-                                    "text": "stylesheet",
-                                    "isEscaped": true
-                                }
-                            },
-                            {
-                                "type": "attribute",
-                                "begin": 492,
-                                "name": "href",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 497,
-                                    "text": "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
-                                    "isEscaped": true
-                                }
-                            }
-                        ],
-                        "is_self_closing": true,
-                        "type": "element",
-                        "begin": 470,
-                        "children": [],
-                        "tag": "link",
-                        "indent": 9
-                    }
-                ],
-                "tag": "head",
-                "indent": 5
+                "indent": 4,
+                "children": [],
+                "attributes": [],
+                "is_self_closing": false,
+                "is_inline": false,
+                "tag": "head"
             },
             {
+                "type": "element",
+                "begin": 66,
+                "indent": 4,
+                "children": [],
                 "attributes": [
                     {
                         "type": "attribute",
-                        "begin": 610,
+                        "begin": 89,
                         "name": "class",
                         "value": {
                             "type": "text",
-                            "begin": 616,
+                            "begin": 95,
                             "text": "body",
                             "isEscaped": true
                         }
                     }
                 ],
                 "is_self_closing": false,
-                "type": "element",
-                "begin": 605,
-                "children": [
-                    {
-                        "attributes": [
-                            {
-                                "type": "attribute",
-                                "begin": 636,
-                                "name": "class",
-                                "value": {
-                                    "type": "text",
-                                    "begin": 642,
-                                    "text": "box",
-                                    "isEscaped": true
-                                }
-                            }
-                        ],
-                        "is_self_closing": false,
-                        "type": "element",
-                        "begin": 632,
-                        "children": [
-                            {
-                                "attributes": [
-                                    {
-                                        "type": "attribute",
-                                        "begin": 796,
-                                        "name": "class",
-                                        "value": {
-                                            "type": "text",
-                                            "begin": 802,
-                                            "text": "text-3xl bold",
-                                            "isEscaped": true
-                                        }
-                                    }
-                                ],
-                                "is_self_closing": false,
-                                "type": "element",
-                                "begin": 793,
-                                "children": [
-                                    {
-                                        "type": "text",
-                                        "begin": 818,
-                                        "text": "jhtml",
-                                        "isEscaped": true
-                                    }
-                                ],
-                                "tag": "h1",
-                                "indent": 13
-                            },
-                            {
-                                "attributes": [],
-                                "is_self_closing": true,
-                                "type": "element",
-                                "begin": 867,
-                                "children": [],
-                                "tag": "br",
-                                "indent": 13
-                            },
-                            {
-                                "attributes": [
-                                    {
-                                        "type": "attribute",
-                                        "begin": 913,
-                                        "name": "class",
-                                        "value": {
-                                            "type": "text",
-                                            "begin": 919,
-                                            "text": "bold italic",
-                                            "isEscaped": true
-                                        }
-                                    }
-                                ],
-                                "is_self_closing": false,
-                                "type": "element",
-                                "begin": 911,
-                                "children": [
-                                    {
-                                        "type": "text",
-                                        "begin": 933,
-                                        "text": "This webpage is created using json and is converted into HTML",
-                                        "isEscaped": true
-                                    }
-                                ],
-                                "tag": "p",
-                                "indent": 13
-                            },
-                            {
-                                "attributes": [
-                                    {
-                                        "type": "attribute",
-                                        "begin": 1062,
-                                        "name": "class",
-                                        "value": {
-                                            "type": "text",
-                                            "begin": 1068,
-                                            "text": "bling",
-                                            "isEscaped": true
-                                        }
-                                    }
-                                ],
-                                "is_self_closing": false,
-                                "type": "element",
-                                "begin": 1038,
-                                "children": [
-                                    {
-                                        "type": "text",
-                                        "begin": 1040,
-                                        "text": "For more infomation",
-                                        "isEscaped": true
-                                    }
-                                ],
-                                "tag": "p",
-                                "indent": 13
-                            }
-                        ],
-                        "tag": "div",
-                        "indent": 9
-                    }
-                ],
-                "tag": "body",
-                "indent": 5
+                "is_inline": false,
+                "tag": "body"
             }
         ],
-        "tag": "html",
-        "indent": 0
+        "attributes": [],
+        "is_self_closing": false,
+        "is_inline": false,
+        "tag": "html"
     }
 ]
