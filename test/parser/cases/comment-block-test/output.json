@@ -1,45 +1,45 @@
 [
-    {
+  {
+    "type": "element",
+    "begin": 0,
+    "indent": 0,
+    "children": [
+      {
         "type": "element",
-        "begin": 0,
-        "indent": 0,
-        "children": [
-            {
-                "type": "element",
-                "begin": 38,
-                "indent": 4,
-                "children": [],
-                "attributes": [],
-                "is_self_closing": false,
-                "is_inline": false,
-                "tag": "head"
-            },
-            {
-                "type": "element",
-                "begin": 66,
-                "indent": 4,
-                "children": [],
-                "attributes": [
-                    {
-                        "type": "attribute",
-                        "begin": 89,
-                        "name": "class",
-                        "value": {
-                            "type": "text",
-                            "begin": 95,
-                            "text": "body",
-                            "isEscaped": true
-                        }
-                    }
-                ],
-                "is_self_closing": false,
-                "is_inline": false,
-                "tag": "body"
-            }
-        ],
+        "begin": 38,
+        "indent": 4,
+        "children": [],
         "attributes": [],
         "is_self_closing": false,
         "is_inline": false,
-        "tag": "html"
-    }
+        "tag": "head"
+      },
+      {
+        "type": "element",
+        "begin": 66,
+        "indent": 4,
+        "children": [],
+        "attributes": [
+          {
+            "type": "attribute",
+            "begin": 89,
+            "name": "class",
+            "value": {
+              "type": "text",
+              "begin": 95,
+              "text": "body",
+              "isEscaped": true
+            }
+          }
+        ],
+        "is_self_closing": false,
+        "is_inline": false,
+        "tag": "body"
+      }
+    ],
+    "attributes": [],
+    "is_self_closing": false,
+    "is_inline": false,
+    "tag": "html"
+  }
 ]

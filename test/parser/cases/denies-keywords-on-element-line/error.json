@@ -1,4 +1,4 @@
 {
-    "message": "invalid_syntax_multiple_elements: Can't place an \"class\" element on same line (Line: 1)",
-    "name": "Error"
+  "message": "invalid_syntax_multiple_elements: Can't place an \"class\" element on same line (Line: 1)",
+  "name": "Error"
 }
