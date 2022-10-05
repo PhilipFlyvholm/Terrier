@@ -1,36 +1,36 @@
 [
-    {
-        "type": "element",
-        "begin": 0,
-        "indent": 0,
-        "children": [
-            {
-                "type": "text",
-                "begin": 2,
-                "text": "hello",
-                "isEscaped": true
-            }
-        ],
-        "attributes": [],
-        "is_self_closing": false,
-        "is_inline": false,
-        "tag": "p"
-    },
-    {
-        "type": "element",
-        "begin": 10,
-        "indent": 0,
-        "children": [
-            {
-                "type": "text",
-                "begin": 14,
-                "text": "hello",
-                "isEscaped": true
-            }
-        ],
-        "attributes": [],
-        "is_self_closing": false,
-        "is_inline": true,
-        "tag": "p"
-    }
+  {
+    "type": "element",
+    "begin": 0,
+    "indent": 0,
+    "children": [
+      {
+        "type": "text",
+        "begin": 2,
+        "text": "hello",
+        "isEscaped": true
+      }
+    ],
+    "attributes": [],
+    "is_self_closing": false,
+    "is_inline": false,
+    "tag": "p"
+  },
+  {
+    "type": "element",
+    "begin": 10,
+    "indent": 0,
+    "children": [
+      {
+        "type": "text",
+        "begin": 14,
+        "text": "hello",
+        "isEscaped": true
+      }
+    ],
+    "attributes": [],
+    "is_self_closing": false,
+    "is_inline": true,
+    "tag": "p"
+  }
 ]

@@ -1,4 +1,4 @@
 {
-    "message": "invalid_syntax_attribute_after_child: Can't place an attribute \"id\" after child element (Line: 1)",
-    "name": "Error"
+  "message": "invalid_syntax_attribute_after_child: Can't place an attribute \"id\" after child element (Line: 1)",
+  "name": "Error"
 }

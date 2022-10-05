@@ -1,0 +1,11 @@
+# Ignore artifacts:
+build
+*.ter
+.github
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+#Ignore test out files 
+output.json
+error.json
