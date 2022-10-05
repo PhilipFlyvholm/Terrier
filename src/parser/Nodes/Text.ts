@@ -14,7 +14,11 @@ export default class Text implements Node {
     this.isEscaped = escape;
   }
 
-  escape_characters(): string {
+  private escape_characters(): string {
     return this.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  public render(): string {
+    return this.text;
   }
 }

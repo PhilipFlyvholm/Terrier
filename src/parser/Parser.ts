@@ -19,11 +19,11 @@ export default class Parser {
 
   public stack: Fragment[] = [];
   public warnings: string[] = [];
-  // private ast: Node | null;
+  public ast: Node | null;
 
   constructor(template: string) {
     this.lexer = getLexer(template);
-    // this.ast = null;
+    this.ast = null;
     let token: Token;
     while ((token = this.lexer.next()) !== null) {
       const type = token.type;
@@ -235,6 +235,13 @@ export default class Parser {
       const current = this.stack.pop();
 
       this.getCurrent().children.push(current as Node); // Force node type
+    }
+    if (this.stack.length > 1) {
+      const fragment = new Fragment(0, 0);
+      fragment.children = this.stack;
+      this.ast = fragment;
+    } else {
+      this.ast = this.stack[0];
     }
   }
 

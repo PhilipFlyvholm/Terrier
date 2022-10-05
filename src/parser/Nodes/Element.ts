@@ -14,4 +14,14 @@ export default class Element extends Fragment {
     this.tag = tag;
     this.is_self_closing = isEmptyTag(tag);
   }
+
+  public render(): string {
+    const attributes = this.attributes.map((attr) => attr.render()).join("");
+    const children = this.is_self_closing
+      ? ""
+      : this.children.map((child) => child.render()).join("");
+    return this.is_self_closing
+      ? `<${this.tag}${attributes}/>`
+      : `<${this.tag}${attributes}>${children}</${this.tag}>`;
+  }
 }

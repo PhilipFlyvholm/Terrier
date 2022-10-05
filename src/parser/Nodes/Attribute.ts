@@ -13,4 +13,8 @@ export default class Attribute implements Node {
     this.name = name;
     this.value = value;
   }
+
+  public render(): string {
+    return ` ${this.name}="${this.value.render()}"`;
+  }
 }

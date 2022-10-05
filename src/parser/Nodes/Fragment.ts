@@ -12,4 +12,8 @@ export default class Fragment implements Node {
     this.indent = indent;
     this.children = [];
   }
+
+  public render(): string {
+    return this.children.map((child) => child.render()).join("");
+  }
 }
