@@ -1,6 +1,5 @@
 import { Lexer, Token } from "./Interfaces";
 import { LexTypes, getLexer } from "./Lexer.js";
-import { parse as acornParse } from "acorn";
 import { error, ParseError } from "./Utils/ParseError.js";
 import CalculateLine from "./Utils/CalculateLine.js";
 
@@ -9,6 +8,7 @@ import Attribute from "./Nodes/Attribute.js";
 import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
+import Script from './Nodes/Script.js';
 
 export default class Parser {
   private readonly lexer: Lexer;
@@ -125,13 +125,13 @@ export default class Parser {
                 scriptEnd = nextDelimiter.end;
               }
             }
-            const script = template.substring(scriptBegin + 1, scriptEnd);
-            console.log(script);
-            const parsedScript = acornParse(script, {
-              sourceType: "module",
-              ecmaVersion: 2016,
-            });
-            console.log(parsedScript);
+            const scriptSrc = template.substring(scriptBegin + 1, scriptEnd);
+            console.log(scriptSrc);
+            const script = new Script(scriptBegin, scriptSrc);
+            const scriptFragment = new Fragment(scriptBegin, indent);
+            scriptFragment.children.push(script);
+            this.stack.push(scriptFragment);
+            break;
           }
           break;
         }
