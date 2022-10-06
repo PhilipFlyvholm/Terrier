@@ -1,16 +1,12 @@
-import Element from "./Nodes/Element.js";
-import Fragment from "./Nodes/Fragment.js";
+import { CompileOutput } from "./Interfaces";
 import Node from "./Nodes/Node";
 
-export default function compile(ast: Node): string | null {
+export default function compile(ast: Node): CompileOutput | null {
   // ...
-  switch (ast.type) {
-    case "element":
-      return Object.assign(new Element(ast.begin, "unknown", 0), ast).render();
-    case "fragment":
-      return Object.assign(new Fragment(ast.begin, 0), ast).render();
-    default:
-      console.log(ast.type);
-      return null;
-  }
+  const compiled: CompileOutput = {
+    html: "",
+    script: "",
+    style: "",
+  };
+  return ast.render(compiled);
 }

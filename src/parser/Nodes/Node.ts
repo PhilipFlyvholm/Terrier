@@ -1,5 +1,7 @@
+import { CompileOutput } from "../Interfaces";
+
 export default interface Node {
   type: string;
   begin: number;
-  render: () => string;
+  render: (complied: CompileOutput) => CompileOutput;
 }

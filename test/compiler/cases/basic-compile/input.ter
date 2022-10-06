@@ -1,5 +1,5 @@
 html
     head
         title "My page"
-    body
+    body class="body"
         h1 "This is my page."

@@ -1,4 +1,5 @@
 import Node from "./Node";
+import { CompileOutput } from "../Interfaces";
 
 export default class Fragment implements Node {
   public type: string;
@@ -13,7 +14,10 @@ export default class Fragment implements Node {
     this.children = [];
   }
 
-  public render(): string {
-    return this.children.map((child) => child.render()).join("");
+  public render(compiled: CompileOutput): CompileOutput {
+    this.children.forEach((child) => {
+      compiled = child.render(compiled);
+    });
+    return compiled;
   }
 }

@@ -1,3 +1,4 @@
+import { CompileOutput } from "../Interfaces";
 import Node from "./Node";
 import Text from "./Text";
 
@@ -14,7 +15,11 @@ export default class Attribute implements Node {
     this.value = value;
   }
 
-  public render(): string {
-    return ` ${this.name}="${this.value.render()}"`;
+  public render(complied: CompileOutput): CompileOutput {
+    return complied;
+  }
+
+  public renderString(): string {
+    return ` ${this.name}="${this.value.renderString()}"`;
   }
 }

@@ -8,7 +8,7 @@ import Attribute from "./Nodes/Attribute.js";
 import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
-import Script from './Nodes/Script.js';
+import Script from "./Nodes/Script.js";
 
 export default class Parser {
   private readonly lexer: Lexer;

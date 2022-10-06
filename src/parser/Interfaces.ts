@@ -11,3 +11,9 @@ export interface Lexer {
   seek: (newposition: number) => void;
   char: (char: string) => Token | null;
 }
+
+export interface CompileOutput {
+  html: string;
+  script: string;
+  style: string;
+}

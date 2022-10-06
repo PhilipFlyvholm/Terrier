@@ -21,7 +21,7 @@ describe("Compiler", function () {
         "utf8"
       );
       if (!input) throw new Error("No input file found");
-      const outputLoc = __dirname + "/cases/" + file + "/output.html";
+      const outputLoc = __dirname + "/cases/" + file + "/output.json";
       const errorLoc = __dirname + "/cases/" + file + "/error.json";
       const shouldOutput = fs.existsSync(outputLoc);
       const shouldError = fs.existsSync(errorLoc);
@@ -35,8 +35,8 @@ describe("Compiler", function () {
           const parse = new Parser(input);
           const compiled = compile(parse.ast);
           assert.equal(
-            compiled.replace(/[\n\r ]/g, ""),
-            output.replace(/[\n\r ]/g, "")
+            JSON.stringify(compiled),
+            JSON.stringify(JSON.parse(output))
           );
           // fs.writeFileSync(__dirname + '/cases/' + file + '/output-actual.html', compiled);
         });
