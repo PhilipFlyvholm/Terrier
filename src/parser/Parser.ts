@@ -9,6 +9,7 @@ import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
 import Script from "./Nodes/Script.js";
+import Mustage from "./Nodes/Mustage";
 
 export default class Parser {
   private readonly lexer: Lexer;
@@ -42,7 +43,7 @@ export default class Parser {
             this.getCurrent().type === "element" &&
             !(this.getCurrent() as Element).is_inline &&
             this.line.number <=
-              CalculateLine(template, this.getCurrent().begin) - 1
+            CalculateLine(template, this.getCurrent().begin) - 1
           ) {
             error(
               ParseError.multiple_elements_on_same_line(token.value),
@@ -245,10 +246,26 @@ export default class Parser {
     }
   }
 
-  nextUntil = (type: string): Token | null => {
+  readMustage(template:string): Mustage | null {
+    const token = this.lexer.next();
+    if (token.type !== LexTypes.Delimiter || token.value !== "{") {
+      error(ParseError.missing_start_delimiter("mustache"), this.line.number);
+      return null;
+    }
+    const mustageBegin = token.begin;
+    const mustageEnd = this.nextUntil("delimiter", "}");
+    if (mustageEnd == null) {
+      error(ParseError.missing_end_delimiter("mustache"), this.line.number);
+      return null;
+    }
+    const mustageSrc = template.substring(mustageBegin + 1, mustageEnd.end);
+    return new Mustage(mustageBegin, mustageSrc);
+  }
+
+  nextUntil = (type: string, value: (string | null) = null): Token | null => {
     let token = this.lexer.next();
     while (token !== null) {
-      if (token.type === type) return token;
+      if (token.type === type && (value == null || value === token.value)) return token;
       token = this.lexer.next();
     }
     return null;

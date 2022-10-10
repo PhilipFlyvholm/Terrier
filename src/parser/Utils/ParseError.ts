@@ -13,9 +13,13 @@ export const ParseError = {
     refCode: "invalid_usage",
     message: `Invalid usage of "${type}" types with value "${value}"`,
   }),
-  missing_start_delimiter: (specialType: string) => ({
+  missing_start_delimiter: (type: string) => ({
     refCode: "missing_start_delimiter",
-    message: `Missing start delimiter for "${specialType}"`,
+    message: `Missing start delimiter for "${type}"`,
+  }),
+  missing_end_delimiter: (type: string) => ({
+    refCode: "missing_end_delimiter",
+    message: `Missing end delimiter for "${type}"`,
   }),
   unknown_type: (value: string) => ({
     refCode: "unknown_type",
