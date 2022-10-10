@@ -138,6 +138,16 @@ export default class Parser {
         }
         case LexTypes.Delimiter: {
           switch (token.value) {
+            case "{":{
+              this.lexer.seek(this.lexer.position()-1);
+              const mustage = this.readMustage(template);
+              if(mustage === null){
+                // TODO ERROR
+                return;
+              }
+              this.getCurrent().children.push(mustage);
+              break;
+            }
             case ">": {
               if (this.getCurrent() == null) {
                 error(
