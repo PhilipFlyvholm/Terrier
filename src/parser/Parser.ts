@@ -9,7 +9,7 @@ import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
 import Script from "./Nodes/Script.js";
-import Mustage from "./Nodes/Mustage";
+import Mustage from "./Nodes/Mustage.js";
 
 export default class Parser {
   private readonly lexer: Lexer;

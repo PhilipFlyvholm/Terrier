@@ -13,6 +13,7 @@ export default class Mustage implements Node {
     }
 
     public render(compiled: CompileOutput): CompileOutput {
+        compiled.html += `\${${this.content}}`;
         return compiled;
     }
 }
