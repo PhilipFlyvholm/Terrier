@@ -1,6 +1,6 @@
 // @ts-ignore
 import compile from "../../build/parser/Compiler.js";
-import Parser from "../../build/parser/Parser.js";
+import parse from "../../build/parser/Parser.js";
 import fs from "fs";
 import assert from "assert";
 import path from "path";
@@ -32,8 +32,8 @@ describe("Compiler", function () {
         it("should compile " + file, function () {
           const output = fs.readFileSync(outputLoc, "utf8");
           if (!output) throw new Error(`Invaid output file for ${file}`);
-          const parse = new Parser(input);
-          const compiled = compile(parse.ast);
+          const parsed = parse(input);
+          const compiled = compile(parsed);
           assert.equal(
             JSON.stringify(compiled),
             JSON.stringify(JSON.parse(output))

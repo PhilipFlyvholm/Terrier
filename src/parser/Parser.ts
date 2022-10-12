@@ -1,4 +1,4 @@
-import { Lexer, Token } from "./Interfaces";
+import { Lexer, ParseOutput, Token } from "./Interfaces";
 import { LexTypes, getLexer } from "./Lexer.js";
 import { error, ParseError } from "./Utils/ParseError.js";
 import CalculateLine from "./Utils/CalculateLine.js";
@@ -8,10 +8,9 @@ import Attribute from "./Nodes/Attribute.js";
 import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
-import Script from "./Nodes/Script.js";
 import Mustage from "./Nodes/Mustage.js";
 
-export default class Parser {
+export class Parser {
   private readonly lexer: Lexer;
   private readonly line = {
     number: 1,
@@ -20,11 +19,13 @@ export default class Parser {
 
   public stack: Fragment[] = [];
   public warnings: string[] = [];
-  public ast: Node | null;
+  public ast: Node;
+  public js: string;
 
   constructor(template: string) {
     this.lexer = getLexer(template);
-    this.ast = null;
+    this.ast = new Fragment(0, 0);
+    this.js = "";
     let token: Token;
     while ((token = this.lexer.next()) !== null) {
       const type = token.type;
@@ -43,7 +44,7 @@ export default class Parser {
             this.getCurrent().type === "element" &&
             !(this.getCurrent() as Element).is_inline &&
             this.line.number <=
-            CalculateLine(template, this.getCurrent().begin) - 1
+              CalculateLine(template, this.getCurrent().begin) - 1
           ) {
             error(
               ParseError.multiple_elements_on_same_line(token.value),
@@ -127,21 +128,23 @@ export default class Parser {
               }
             }
             const scriptSrc = template.substring(scriptBegin + 1, scriptEnd);
-            console.log(scriptSrc);
+            this.js += scriptSrc;
+
+            /* console.log(scriptSrc);
             const script = new Script(scriptBegin, scriptSrc);
             const scriptFragment = new Fragment(scriptBegin, indent);
             scriptFragment.children.push(script);
-            this.stack.push(scriptFragment);
+            this.stack.push(scriptFragment); */
             break;
           }
           break;
         }
         case LexTypes.Delimiter: {
           switch (token.value) {
-            case "{":{
-              this.lexer.seek(this.lexer.position()-1);
+            case "{": {
+              this.lexer.seek(this.lexer.position() - 1);
               const mustage = this.readMustage(template);
-              if(mustage === null){
+              if (mustage === null) {
                 // TODO ERROR
                 return;
               }
@@ -256,7 +259,7 @@ export default class Parser {
     }
   }
 
-  readMustage(template:string): Mustage | null {
+  readMustage(template: string): Mustage | null {
     const token = this.lexer.next();
     if (token.type !== LexTypes.Delimiter || token.value !== "{") {
       error(ParseError.missing_start_delimiter("mustache"), this.line.number);
@@ -272,10 +275,11 @@ export default class Parser {
     return new Mustage(mustageBegin, mustageSrc);
   }
 
-  nextUntil = (type: string, value: (string | null) = null): Token | null => {
+  nextUntil = (type: string, value: string | null = null): Token | null => {
     let token = this.lexer.next();
     while (token !== null) {
-      if (token.type === type && (value == null || value === token.value)) return token;
+      if (token.type === type && (value == null || value === token.value))
+        return token;
       token = this.lexer.next();
     }
     return null;
@@ -329,13 +333,16 @@ export default class Parser {
     return true;
   };
 
-  calculateIndent = (token: Token): number =>
+  private readonly calculateIndent = (token: Token): number =>
     token.begin - this.line.startIndex;
 
   private readonly addWarning = (warning: string): number =>
     this.warnings.push(`Warning: ${warning} (Line: ${this.line.number})`);
+}
 
-  printStack = (): void => {
-    console.log(this.stack);
-  };
+export default function parse(template: string): ParseOutput {
+  console.log(template);
+  
+  const parser = new Parser(template);
+  return { ast: parser.ast, js: parser.js, warnings: parser.warnings };
 }

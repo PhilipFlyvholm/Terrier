@@ -1,6 +1,6 @@
 import fs from "fs";
 import compile from "./parser/Compiler.js";
-import Parser from "./parser/Parser.js";
+import parse from "./parser/Parser.js";
 
 const parserTest = async (): Promise<void> => {
   await fs.readFile(
@@ -10,9 +10,9 @@ const parserTest = async (): Promise<void> => {
         console.error(err);
         return;
       }
-      const parser = new Parser(data.toString());
+      const parser = parse(data.toString());
       // parser.printStack();
-      if (parser.ast !== null) console.log(compile(parser.ast));
+      if (parser.ast !== null) console.log(compile(parser));
       else console.log("Failed parse");
     }
   );

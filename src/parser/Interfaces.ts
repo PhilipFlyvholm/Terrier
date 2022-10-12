@@ -1,3 +1,5 @@
+import Node from "./Nodes/Node";
+
 export interface Token {
   type: string;
   value: string;
@@ -16,4 +18,10 @@ export interface CompileOutput {
   html: string;
   script: string;
   style: string;
+}
+
+export interface ParseOutput {
+    ast: Node;
+    js: string;
+    warnings: string[];
 }

@@ -1,12 +1,11 @@
-import { CompileOutput } from "./Interfaces";
-import Node from "./Nodes/Node";
+import { CompileOutput, ParseOutput } from './Interfaces';
 
-export default function compile(ast: Node): CompileOutput | null {
+export default function compile(parse: ParseOutput): CompileOutput | null {
   // ...
   const compiled: CompileOutput = {
     html: "",
-    script: "",
+    script: parse.js,
     style: "",
   };
-  return ast.render(compiled);
+  return parse.ast.render(compiled);
 }
