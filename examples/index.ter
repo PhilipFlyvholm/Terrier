@@ -1,6 +1,24 @@
 @script {
-    import text from "components/text.json"
-    import center from "components/center.json"
+    /*import "../style.css";
+    import {bing, bong} from "bong.ter";
+    import component from 'anotherComponent.ter';
+    const hello = "world";
+    let button;*/
+    let color = "yello"
+    //const bing2 = "hello", bong2 = "h";
+    //bing2 = "blah";
+    const buttonClick = () => {
+        console.log("clicked");
+        color = "black";
+    }
+    function test(){
+        color = "green";
+    }
+}
+@style{
+    a > .b#h{
+        background: black;
+    }
 }
 html
     head

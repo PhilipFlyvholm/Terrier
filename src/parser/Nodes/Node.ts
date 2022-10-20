@@ -1,7 +1,7 @@
-import { CompileOutput } from "../Interfaces";
+import Component from "../../runtime/TerrierComponent.js";
 
 export default interface Node {
   type: string;
   begin: number;
-  render: (complied: CompileOutput) => CompileOutput;
+  render: (complied: Component) => Component;
 }

@@ -34,11 +34,11 @@ describe("Compiler", function () {
           if (!output) throw new Error(`Invaid output file for ${file}`);
           const parsed = parse(input);
           const compiled = compile(parsed);
+          // fs.writeFileSync(__dirname + '/cases/' + file + '/output.json', JSON.stringify(compiled));
           assert.equal(
             JSON.stringify(compiled),
             JSON.stringify(JSON.parse(output))
           );
-          // fs.writeFileSync(__dirname + '/cases/' + file + '/output-actual.html', compiled);
         });
       } else {
         it("should fail " + file, function () {

@@ -1,4 +1,4 @@
-import { CompileOutput } from "../Interfaces";
+import Component from "../../runtime/TerrierComponent.js";
 import Node from "./Node";
 import Text from "./Text";
 
@@ -15,7 +15,7 @@ export default class Attribute implements Node {
     this.value = value;
   }
 
-  public render(complied: CompileOutput): CompileOutput {
+  public render(complied: Component): Component {
     return complied;
   }
 

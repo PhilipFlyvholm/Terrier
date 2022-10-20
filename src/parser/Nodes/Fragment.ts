@@ -1,5 +1,5 @@
 import Node from "./Node";
-import { CompileOutput } from "../Interfaces";
+import Component from "../../runtime/TerrierComponent.js";
 
 export default class Fragment implements Node {
   public type: string;
@@ -14,7 +14,7 @@ export default class Fragment implements Node {
     this.children = [];
   }
 
-  public render(compiled: CompileOutput): CompileOutput {
+  public render(compiled: Component): Component {
     this.children.forEach((child) => {
       compiled = child.render(compiled);
     });

@@ -21,7 +21,8 @@ export interface CompileOutput {
 }
 
 export interface ParseOutput {
-    ast: Node;
-    js: string;
-    warnings: string[];
+  ast: Node;
+  js: string;
+  warnings: string[];
+  style: string;
 }

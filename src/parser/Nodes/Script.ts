@@ -1,6 +1,6 @@
 import Node from "./Node";
 import { parse as acornParse, Node as acornNode } from "acorn";
-import { CompileOutput } from "../Interfaces";
+import Component from "../../runtime/TerrierComponent.js";
 export default class Script implements Node {
   public type: string;
   public begin: number;
@@ -17,7 +17,7 @@ export default class Script implements Node {
     this.rawSrc = src;
   }
 
-  public render(compiled: CompileOutput): CompileOutput {
+  public render(compiled: Component): Component {
     compiled.script += this.rawSrc;
     return compiled;
   }

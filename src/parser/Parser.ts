@@ -21,11 +21,13 @@ export class Parser {
   public warnings: string[] = [];
   public ast: Node;
   public js: string;
+  public style: string;
 
   constructor(template: string) {
     this.lexer = getLexer(template);
     this.ast = new Fragment(0, 0);
     this.js = "";
+    this.style = "";
     let token: Token;
     while ((token = this.lexer.next()) !== null) {
       const type = token.type;
@@ -115,7 +117,6 @@ export class Parser {
 
             while (depth !== 0) {
               const nextDelimiter = this.nextUntil("delimiter");
-              console.log(nextDelimiter);
 
               if (nextDelimiter == null) {
                 // TODO ERROR
@@ -129,12 +130,35 @@ export class Parser {
             }
             const scriptSrc = template.substring(scriptBegin + 1, scriptEnd);
             this.js += scriptSrc;
+            break;
+          } else if (token.value === "style") {
+            token = this.lexer.next();
+            if (token.type !== LexTypes.Delimiter && token.value !== "{") {
+              error(
+                ParseError.missing_start_delimiter("script"),
+                this.line.number
+              );
+              break;
+            }
+            let depth = 1;
+            const styleBegin = token.begin;
+            let styleEnd = token.end;
 
-            /* console.log(scriptSrc);
-            const script = new Script(scriptBegin, scriptSrc);
-            const scriptFragment = new Fragment(scriptBegin, indent);
-            scriptFragment.children.push(script);
-            this.stack.push(scriptFragment); */
+            while (depth !== 0) {
+              const nextDelimiter = this.nextUntil("delimiter");
+
+              if (nextDelimiter == null) {
+                // TODO ERROR
+                return;
+              }
+              if (nextDelimiter.value === "{") depth++;
+              else if (nextDelimiter.value === "}") {
+                depth--;
+                styleEnd = nextDelimiter.end;
+              }
+            }
+            const styleSrc = template.substring(styleBegin + 1, styleEnd);
+            this.style += styleSrc;
             break;
           }
           break;
@@ -176,8 +200,6 @@ export class Parser {
             }
             case ")": {
               if (this.getCurrent() == null) {
-                console.log("here");
-
                 error(
                   ParseError.invalid_usage(token.type, token.value),
                   this.line.number
@@ -341,8 +363,11 @@ export class Parser {
 }
 
 export default function parse(template: string): ParseOutput {
-  console.log(template);
-  
   const parser = new Parser(template);
-  return { ast: parser.ast, js: parser.js, warnings: parser.warnings };
+  return {
+    ast: parser.ast,
+    js: parser.js,
+    warnings: parser.warnings,
+    style: parser.style,
+  };
 }

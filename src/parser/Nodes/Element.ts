@@ -1,7 +1,7 @@
 import isEmptyTag from "../../utils/emptyTags.js";
 import Attribute from "./Attribute";
 import Fragment from "./Fragment.js";
-import { CompileOutput } from "../Interfaces";
+import Component from "../../runtime/TerrierComponent.js";
 
 export default class Element extends Fragment {
   public tag: string;
@@ -16,7 +16,7 @@ export default class Element extends Fragment {
     this.is_self_closing = isEmptyTag(tag);
   }
 
-  public render(compiled: CompileOutput): CompileOutput {
+  public render(compiled: Component): Component {
     const attributes = this.attributes
       .map((attr) => attr.renderString())
       .join("");
