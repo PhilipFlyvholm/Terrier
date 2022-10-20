@@ -1,6 +1,5 @@
-import { Lexer, Token } from "./Interfaces";
+import { Lexer, ParseOutput, Token } from "./Interfaces";
 import { LexTypes, getLexer } from "./Lexer.js";
-import { parse as acornParse } from "acorn";
 import { error, ParseError } from "./Utils/ParseError.js";
 import CalculateLine from "./Utils/CalculateLine.js";
 
@@ -9,8 +8,9 @@ import Attribute from "./Nodes/Attribute.js";
 import Text from "./Nodes/Text.js";
 import Fragment from "./Nodes/Fragment.js";
 import Node from "./Nodes/Node";
+import Mustage from "./Nodes/Mustage.js";
 
-export default class Parser {
+export class Parser {
   private readonly lexer: Lexer;
   private readonly line = {
     number: 1,
@@ -19,11 +19,15 @@ export default class Parser {
 
   public stack: Fragment[] = [];
   public warnings: string[] = [];
-  public ast: Node | null;
+  public ast: Node;
+  public js: string;
+  public style: string;
 
   constructor(template: string) {
     this.lexer = getLexer(template);
-    this.ast = null;
+    this.ast = new Fragment(0, 0);
+    this.js = "";
+    this.style = "";
     let token: Token;
     while ((token = this.lexer.next()) !== null) {
       const type = token.type;
@@ -113,7 +117,6 @@ export default class Parser {
 
             while (depth !== 0) {
               const nextDelimiter = this.nextUntil("delimiter");
-              console.log(nextDelimiter);
 
               if (nextDelimiter == null) {
                 // TODO ERROR
@@ -125,18 +128,53 @@ export default class Parser {
                 scriptEnd = nextDelimiter.end;
               }
             }
-            const script = template.substring(scriptBegin + 1, scriptEnd);
-            console.log(script);
-            const parsedScript = acornParse(script, {
-              sourceType: "module",
-              ecmaVersion: 2016,
-            });
-            console.log(parsedScript);
+            const scriptSrc = template.substring(scriptBegin + 1, scriptEnd);
+            this.js += scriptSrc;
+            break;
+          } else if (token.value === "style") {
+            token = this.lexer.next();
+            if (token.type !== LexTypes.Delimiter && token.value !== "{") {
+              error(
+                ParseError.missing_start_delimiter("script"),
+                this.line.number
+              );
+              break;
+            }
+            let depth = 1;
+            const styleBegin = token.begin;
+            let styleEnd = token.end;
+
+            while (depth !== 0) {
+              const nextDelimiter = this.nextUntil("delimiter");
+
+              if (nextDelimiter == null) {
+                // TODO ERROR
+                return;
+              }
+              if (nextDelimiter.value === "{") depth++;
+              else if (nextDelimiter.value === "}") {
+                depth--;
+                styleEnd = nextDelimiter.end;
+              }
+            }
+            const styleSrc = template.substring(styleBegin + 1, styleEnd);
+            this.style += styleSrc;
+            break;
           }
           break;
         }
         case LexTypes.Delimiter: {
           switch (token.value) {
+            case "{": {
+              this.lexer.seek(this.lexer.position() - 1);
+              const mustage = this.readMustage(template);
+              if (mustage === null) {
+                // TODO ERROR
+                return;
+              }
+              this.getCurrent().children.push(mustage);
+              break;
+            }
             case ">": {
               if (this.getCurrent() == null) {
                 error(
@@ -162,8 +200,6 @@ export default class Parser {
             }
             case ")": {
               if (this.getCurrent() == null) {
-                console.log("here");
-
                 error(
                   ParseError.invalid_usage(token.type, token.value),
                   this.line.number
@@ -245,10 +281,27 @@ export default class Parser {
     }
   }
 
-  nextUntil = (type: string): Token | null => {
+  readMustage(template: string): Mustage | null {
+    const token = this.lexer.next();
+    if (token.type !== LexTypes.Delimiter || token.value !== "{") {
+      error(ParseError.missing_start_delimiter("mustache"), this.line.number);
+      return null;
+    }
+    const mustageBegin = token.begin;
+    const mustageEnd = this.nextUntil("delimiter", "}");
+    if (mustageEnd == null) {
+      error(ParseError.missing_end_delimiter("mustache"), this.line.number);
+      return null;
+    }
+    const mustageSrc = template.substring(mustageBegin + 1, mustageEnd.end);
+    return new Mustage(mustageBegin, mustageSrc);
+  }
+
+  nextUntil = (type: string, value: string | null = null): Token | null => {
     let token = this.lexer.next();
     while (token !== null) {
-      if (token.type === type) return token;
+      if (token.type === type && (value == null || value === token.value))
+        return token;
       token = this.lexer.next();
     }
     return null;
@@ -302,13 +355,19 @@ export default class Parser {
     return true;
   };
 
-  calculateIndent = (token: Token): number =>
+  private readonly calculateIndent = (token: Token): number =>
     token.begin - this.line.startIndex;
 
   private readonly addWarning = (warning: string): number =>
     this.warnings.push(`Warning: ${warning} (Line: ${this.line.number})`);
+}
 
-  printStack = (): void => {
-    console.log(this.stack);
+export default function parse(template: string): ParseOutput {
+  const parser = new Parser(template);
+  return {
+    ast: parser.ast,
+    js: parser.js,
+    warnings: parser.warnings,
+    style: parser.style,
   };
 }

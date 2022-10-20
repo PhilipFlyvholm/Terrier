@@ -1,3 +1,4 @@
+import Component from "../../runtime/TerrierComponent.js";
 import Node from "./Node";
 
 export default class Text implements Node {
@@ -18,7 +19,12 @@ export default class Text implements Node {
     return this.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  public render(): string {
+  public render(complied: Component): Component {
+    complied.html += this.renderString();
+    return complied;
+  }
+
+  public renderString(): string {
     return this.text;
   }
 }

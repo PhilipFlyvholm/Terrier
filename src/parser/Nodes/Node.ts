@@ -1,5 +1,7 @@
+import Component from "../../runtime/TerrierComponent.js";
+
 export default interface Node {
   type: string;
   begin: number;
-  render: () => string;
+  render: (complied: Component) => Component;
 }

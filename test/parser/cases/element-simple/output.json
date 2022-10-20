@@ -1,12 +1,1 @@
-[
-  {
-    "type": "element",
-    "begin": 0,
-    "indent": 0,
-    "children": [],
-    "attributes": [],
-    "is_self_closing": false,
-    "is_inline": false,
-    "tag": "html"
-  }
-]
+{"ast":{"type":"element","begin":0,"indent":0,"children":[],"attributes":[],"is_self_closing":false,"is_inline":false,"tag":"html"},"js":"","warnings":[]}

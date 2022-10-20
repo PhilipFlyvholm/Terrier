@@ -1,0 +1,1 @@
+ export default `<html><head><title>My page</title></head><body class="body"><h1>This is my page.</h1></body></html>`

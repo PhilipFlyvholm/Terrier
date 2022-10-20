@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx tsc && mocha",
     "example": "npx tsc && node ./build/index.js",
+    "build": "npx tsc",
     "prettier": "prettier -w .",
     "lint": "eslint \"{src,test}/**/*.{ts,js}\""
   },
@@ -13,15 +14,18 @@
   "author": "Philip Flyvholm",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
+    "@types/css-tree": "^2.0.0",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^18.8.0",
+    "@types/node": "^18.8.3",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
-    "eslint": "^8.24.0",
+    "css-tree": "^2.2.1",
+    "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
+    "estree-walker": "^3.0.1",
     "mocha": "^10.0.0",
     "prettier": "2.7.1",
     "ts-node": "^10.9.1",

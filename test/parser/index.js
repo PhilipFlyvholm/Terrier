@@ -1,5 +1,5 @@
 // @ts-ignore
-import Parser from "../../build/parser/Parser.js";
+import parse from "../../build/parser/Parser.js";
 import fs from "fs";
 import assert from "assert";
 import path from "path";
@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 describe("Parser", function () {
-  describe("#constructor", function () {
+  describe("#parse", function () {
     fs.readdirSync(__dirname + "/cases").forEach(function (file) {
       const dir = fs.lstatSync(__dirname + "/cases/" + file);
       if (!dir.isDirectory()) return;
@@ -34,11 +34,14 @@ describe("Parser", function () {
           );
           if (!output) throw new Error(`Invaid output file for ${file}`);
 
-          const parser = new Parser(input);
+          const parser = parse(input);
           assert.ok(parser);
           assert.equal(parser.warnings.length, 0);
-          // fs.writeFileSync(__dirname + '/cases/' + file + '/output-actual.json', JSON.stringify(parser.stack));
-          assert.deepEqual(parser.stack, JSON.parse(output));
+          // fs.writeFileSync(__dirname + '/cases/' + file + '/output-actual.json', JSON.stringify(parser));
+          const outputJson = JSON.parse(output);
+          assert.deepEqual(parser.ast, outputJson.ast);
+          assert.deepEqual(parser.js, outputJson.js);
+          assert.deepEqual(parser.warnings, outputJson.warnings);
         });
       } else {
         it("should fail " + file, function () {
@@ -49,7 +52,7 @@ describe("Parser", function () {
           if (!error) throw new Error(`Invaid error file for ${file}`);
           assert.throws(() => {
             // eslint-disable-next-line no-new
-            new Parser(input);
+            parse(input);
           }, JSON.parse(error));
         });
       }
