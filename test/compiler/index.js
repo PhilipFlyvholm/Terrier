@@ -1,5 +1,5 @@
 // @ts-ignore
-import compile from "../../build/parser/Compiler.js";
+import compile from "../../build/compiler/Compiler.js";
 import parse from "../../build/parser/Parser.js";
 import fs from "fs";
 import assert from "assert";
@@ -21,7 +21,7 @@ describe("Compiler", function () {
         "utf8"
       );
       if (!input) throw new Error("No input file found");
-      const outputLoc = __dirname + "/cases/" + file + "/output.json";
+      const outputLoc = __dirname + "/cases/" + file + "/output.js";
       const errorLoc = __dirname + "/cases/" + file + "/error.json";
       const shouldOutput = fs.existsSync(outputLoc);
       const shouldError = fs.existsSync(errorLoc);
@@ -34,11 +34,8 @@ describe("Compiler", function () {
           if (!output) throw new Error(`Invaid output file for ${file}`);
           const parsed = parse(input);
           const compiled = compile(parsed);
-          // fs.writeFileSync(__dirname + '/cases/' + file + '/output.json', JSON.stringify(compiled));
-          assert.equal(
-            JSON.stringify(compiled),
-            JSON.stringify(JSON.parse(output))
-          );
+          // fs.writeFileSync(__dirname + '/cases/' + file + '/output.js', compiled);
+          assert.equal(compiled, output);
         });
       } else {
         it("should fail " + file, function () {

@@ -1,4 +1,4 @@
-import TerrierComponent from '../runtime/TerrierComponent';
+import TerrierComponent from "../runtime/TerrierComponent";
 import {
   parse,
   walk,
