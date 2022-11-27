@@ -1,6 +1,6 @@
 # Terrier [![Issues](https://img.shields.io/github/issues/PhilipFlyvholm/Terrier)](https://github.com/PhilipFlyvholm/Terrier/issues) [![MIT License](https://img.shields.io/github/license/PhilipFlyvholm/Terrier)](https://github.com/PhilipFlyvholm/Terrier/blob/master/LICENSE)
 
-Terrier is a new web application compiler inspired by Svelte and Pug to give an alternative syntax to html while still having the benefits of a component based compiler.
+Terrier is a new web application compiler inspired by [Svelte](https://github.com/sveltejs/svelte) and [Pug](https://github.com/pugjs/pug) to give an alternative syntax to html while still having the benefits of a component based compiler.
 
 ## Current status
 
