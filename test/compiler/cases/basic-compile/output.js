@@ -1,1 +1,1 @@
- export default `<html><head><title>My page</title></head><body class="body"><h1>This is my page.</h1></body></html>`
+ export default `<html class="terrier-3kpn"><head class="terrier-3kpn"><title class="terrier-3kpn">My page</title></head><body class="body terrier-3kpn"><h1 class="terrier-3kpn">This is my page.</h1></body></html>`;

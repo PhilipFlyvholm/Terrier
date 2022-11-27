@@ -8,6 +8,6 @@ export default function compile(parse: ParseOutput): string | null {
   const c = new Component(parse.ast, parse.js, parse.style);
   compileScript(c);
   scopeStyle(c);
-
-  return `${c.script} export default \`${c.html}\``;
+  const injectStyle = c.style.trim() !== "" ? `document.getElementsByTagName('head')[0].innerHTML += '<style id="${c.hash}">${c.style}</style>';` : "";
+  return `${injectStyle}${c.script} export default \`${c.html}\`;`;
 }

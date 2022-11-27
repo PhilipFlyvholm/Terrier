@@ -1,0 +1,1 @@
+document.getElementsByTagName('head')[0].innerHTML += '<style id="terrier-hpgr3r">h1{transform:rotate(180deg)}h1.terrier-hpgr3r{background:black}</style>'; export default `<h1 class="terrier-hpgr3r">Scope styling test</h1>`;

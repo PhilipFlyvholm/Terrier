@@ -11,12 +11,16 @@ export default class Text implements Node {
     this.type = "text";
     this.begin = begin;
     this.text = text;
-    if (escape) this.text = this.escape_characters();
+    if (escape) this.text = this.escape_characters(this.text);
     this.isEscaped = escape;
   }
 
-  private escape_characters(): string {
-    return this.text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  public addString(text: string, escape: boolean):void{
+    this.text += escape ? this.escape_characters(text) : text;
+  }
+
+  private escape_characters(string:string): string {
+    return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   public render(complied: Component): Component {

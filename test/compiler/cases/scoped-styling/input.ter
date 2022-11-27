@@ -1,0 +1,9 @@
+@style{
+    :global(h1){
+        transform: rotate(180deg);
+    }
+    h1{
+        background: black;
+    }
+}
+h1 > "Scope styling test"
