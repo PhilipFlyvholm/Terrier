@@ -17,7 +17,7 @@
     "@types/css-tree": "^2.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "^18.11.9",
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
     "css-tree": "^2.2.1",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
