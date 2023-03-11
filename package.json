@@ -15,7 +15,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@types/css-tree": "^2.0.0",
-    "@types/mocha": "^10.0.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "css-tree": "^2.2.1",
@@ -26,7 +26,7 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.1.1",
     "estree-walker": "^3.0.1",
-    "mocha": "^10.0.0",
+    "mocha": "^10.2.0",
     "prettier": "2.8.4",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
