@@ -1,6 +1,6 @@
 import { Lexer, ParseOutput, Token } from "./Interfaces";
 import { LexTypes, getLexer } from "./Lexer.js";
-import { error, ParseError } from "./Utils/ParseError.js";
+import { ErrorHandler, ParseErrorMessages } from "./Utils/ParseError.js";
 import CalculateLine from "./Utils/CalculateLine.js";
 
 import Element from "./Nodes/Element.js";
@@ -11,6 +11,8 @@ import Node from "./Nodes/Node";
 import Mustage from "./Nodes/Mustage.js";
 
 export class Parser {
+  private readonly errorHandler: ErrorHandler;
+
   private readonly lexer: Lexer;
   private readonly line = {
     number: 1,
@@ -28,6 +30,7 @@ export class Parser {
     this.ast = new Fragment(0, 0);
     this.js = "";
     this.style = "";
+    this.errorHandler = new ErrorHandler(template);
     let token: Token;
     while ((token = this.lexer.next()) !== null) {
       const type = token.type;
@@ -48,9 +51,10 @@ export class Parser {
             this.line.number <=
               CalculateLine(template, this.getCurrent().begin) - 1
           ) {
-            error(
-              ParseError.multiple_elements_on_same_line(token.value),
-              this.line.number
+            this.errorHandler.error(
+              ParseErrorMessages.multiple_elements_on_same_line(token.value),
+              this.line,
+              this.getCurrent()
             );
             return;
           }
@@ -63,26 +67,36 @@ export class Parser {
           const attributeName = token.value;
           const attributeBegin = token.begin;
           if (this.getCurrent() == null) {
-            error(
-              ParseError.attribute_without_element(attributeName),
-              this.line.number
+            this.errorHandler.error(
+              ParseErrorMessages.attribute_without_element(attributeName),
+              this.line,
+              this.getCurrent()
             );
             return;
           }
           if (this.getCurrent().type !== "element") {
-            error(ParseError.non_element_attribute, this.line.number);
+            this.errorHandler.error(
+              ParseErrorMessages.non_element_attribute,
+              this.line,
+              this.getCurrent()
+            );
             return;
           }
           if (this.getCurrent().children.length > 0) {
-            error(
-              ParseError.attribute_after_child(attributeName),
-              this.line.number
+            this.errorHandler.error(
+              ParseErrorMessages.attribute_after_child(attributeName),
+              this.line,
+              this.getCurrent()
             );
             return;
           }
           token = this.lexer.next();
           if (token.type !== LexTypes.String) {
-            error(ParseError.arg_missing_value, this.line.number);
+            this.errorHandler.error(
+              ParseErrorMessages.arg_missing_value,
+              this.line,
+              this.getCurrent()
+            );
             break;
           }
           const attributeValue = new Text(token.begin, token.value, true);
@@ -105,9 +119,10 @@ export class Parser {
           if (token.value === "script") {
             token = this.lexer.next();
             if (token.type !== LexTypes.Delimiter && token.value !== "{") {
-              error(
-                ParseError.missing_start_delimiter("script"),
-                this.line.number
+              this.errorHandler.error(
+                ParseErrorMessages.missing_start_delimiter("script"),
+                this.line,
+                this.getCurrent()
               );
               break;
             }
@@ -134,9 +149,10 @@ export class Parser {
           } else if (token.value === "style") {
             token = this.lexer.next();
             if (token.type !== LexTypes.Delimiter && token.value !== "{") {
-              error(
-                ParseError.missing_start_delimiter("script"),
-                this.line.number
+              this.errorHandler.error(
+                ParseErrorMessages.missing_start_delimiter("script"),
+                this.line,
+                this.getCurrent()
               );
               break;
             }
@@ -177,16 +193,18 @@ export class Parser {
             }
             case ">": {
               if (this.getCurrent() == null) {
-                error(
-                  ParseError.invalid_usage(token.type, token.value),
-                  this.line.number
+                this.errorHandler.error(
+                  ParseErrorMessages.invalid_usage(token.type, token.value),
+                  this.line,
+                  this.getCurrent()
                 );
                 return;
               }
               if (this.getCurrent().type !== "element") {
-                error(
-                  ParseError.invalid_usage(token.type, token.value),
-                  this.line.number
+                this.errorHandler.error(
+                  ParseErrorMessages.invalid_usage(token.type, token.value),
+                  this.line,
+                  this.getCurrent()
                 );
                 return;
               }
@@ -200,18 +218,20 @@ export class Parser {
             }
             case ")": {
               if (this.getCurrent() == null) {
-                error(
-                  ParseError.invalid_usage(token.type, token.value),
-                  this.line.number
+                this.errorHandler.error(
+                  ParseErrorMessages.invalid_usage(token.type, token.value),
+                  this.line,
+                  this.getCurrent()
                 );
                 return;
               }
               while (this.getCurrent().type !== "fragment") {
                 const current = this.stack.pop();
                 if (this.getCurrent() == null) {
-                  error(
-                    ParseError.invalid_usage(token.type, token.value),
-                    this.line.number
+                  this.errorHandler.error(
+                    ParseErrorMessages.invalid_usage(token.type, token.value),
+                    this.line,
+                    this.getCurrent()
                   );
                   return;
                 }
@@ -223,17 +243,19 @@ export class Parser {
             }
             case "+": {
               if (this.getCurrent() == null) {
-                error(
-                  ParseError.invalid_usage(token.type, token.value),
-                  this.line.number
+                this.errorHandler.error(
+                  ParseErrorMessages.invalid_usage(token.type, token.value),
+                  this.line,
+                  this.getCurrent()
                 );
                 return;
               }
               const sibling = this.stack.pop();
               if (this.getCurrent() == null) {
-                error(
-                  ParseError.invalid_usage(token.type, token.value),
-                  this.line.number
+                this.errorHandler.error(
+                  ParseErrorMessages.invalid_usage(token.type, token.value),
+                  this.line,
+                  this.getCurrent()
                 );
                 return;
               }
@@ -241,9 +263,10 @@ export class Parser {
               break;
             }
             default: {
-              error(
-                ParseError.invalid_usage(token.type, token.value),
-                this.line.number
+              this.errorHandler.error(
+                ParseErrorMessages.invalid_usage(token.type, token.value),
+                this.line,
+                this.getCurrent()
               );
               break;
             }
@@ -252,11 +275,16 @@ export class Parser {
         }
         default: {
           if (token.type === "unknown")
-            error(ParseError.unknown_type(token.value), this.line.number);
+            this.errorHandler.error(
+              ParseErrorMessages.unknown_type(token.value),
+              this.line,
+              this.getCurrent()
+            );
           else
-            error(
-              ParseError.invalid_usage(token.type, token.value),
-              this.line.number
+            this.errorHandler.error(
+              ParseErrorMessages.invalid_usage(token.type, token.value),
+              this.line,
+              this.getCurrent()
             );
           break;
         }
@@ -284,13 +312,21 @@ export class Parser {
   readMustage(template: string): Mustage | null {
     const token = this.lexer.next();
     if (token.type !== LexTypes.Delimiter || token.value !== "{") {
-      error(ParseError.missing_start_delimiter("mustache"), this.line.number);
+      this.errorHandler.error(
+        ParseErrorMessages.missing_start_delimiter("mustache"),
+        this.line,
+        this.getCurrent()
+      );
       return null;
     }
     const mustageBegin = token.begin;
     const mustageEnd = this.nextUntil("delimiter", "}");
     if (mustageEnd == null) {
-      error(ParseError.missing_end_delimiter("mustache"), this.line.number);
+      this.errorHandler.error(
+        ParseErrorMessages.missing_end_delimiter("mustache"),
+        this.line,
+        this.getCurrent()
+      );
       return null;
     }
     const mustageSrc = template.substring(mustageBegin + 1, mustageEnd.end);
